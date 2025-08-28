@@ -1,0 +1,2339 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Simulado Polícia Penal MG 2025</title>
+    <style>
+      /* ======== ESTILO GERAL ======== */
+      body {
+        font-family: "Segoe UI", Arial, sans-serif;
+        margin: 0;
+        background: linear-gradient(135deg, #1e3c72, #2a5298);
+        color: #333;
+      }
+
+      header {
+        background: #fff;
+        padding: 15px;
+        text-align: center;
+        font-size: 22px;
+        font-weight: bold;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+
+      /* ======== LOGIN ======== */
+      #login {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        color: #fff;
+        text-align: center;
+      }
+      #login input {
+        padding: 12px;
+        font-size: 16px;
+        border: none;
+        border-radius: 8px;
+        margin-top: 15px;
+        width: 250px;
+      }
+      #login button {
+        padding: 12px 25px;
+        font-size: 16px;
+        border: none;
+        margin-top: 15px;
+        border-radius: 8px;
+        background: #28a745;
+        color: #fff;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+      #login button:hover {
+        background: #218838;
+      }
+
+      /* ======== MENU ======== */
+      #menu {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      #menu h2 {
+        color: #fff;
+        margin-bottom: 20px;
+      }
+      #menu button {
+        width: 250px;
+        padding: 15px;
+        font-size: 18px;
+        margin: 10px 0;
+        border: none;
+        border-radius: 10px;
+        color: #fff;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+      #menu button:hover {
+        transform: scale(1.05);
+      }
+
+      /* ======== CORES FIXAS DOS BOTÕES ======== */
+      .btn-portugues {
+        background: #007bff;
+      } /* Azul */
+      .btn-informatica {
+        background: #6f42c1;
+      } /* Roxo */
+      .btn-penal {
+        background: #e83e8c;
+      } /* Rosa */
+      .btn-constitucional {
+        background: #fd7e14;
+      } /* Laranja */
+      .btn-humanos {
+        background: #20c997;
+      } /* Verde água */
+      .btn-legislacao {
+        background: #ffc107;
+        color: #000;
+      } /* Amarelo */
+      .btn-logica {
+        background: #17a2b8;
+      } /* Azul piscina */
+
+      /* ======== QUIZ ======== */
+      #quiz {
+        padding: 20px;
+        max-width: 900px;
+        margin: auto;
+      }
+      #placar {
+        font-size: 18px;
+        text-align: center;
+        margin: 20px auto;
+        background: #fff;
+        padding: 12px;
+        border-radius: 8px;
+        font-weight: bold;
+        color: #1e3c72;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+      }
+      .quiz-box h3 {
+        font-size: 22px;
+        font-weight: bold;
+        text-align: center;
+        color: #fff;
+        padding: 10px;
+        border-radius: 8px;
+        border: 2px solid #17a2b8;
+      }
+
+      /* Opções de resposta */
+      .opcao {
+        display: block;
+        margin: 10px 0;
+        padding: 12px;
+        border: 2px solid #ccc;
+        border-radius: 8px;
+        cursor: pointer;
+        background: #fff;
+        transition: all 0.4s ease;
+      }
+      .opcao:hover {
+        background: #f1f1f1;
+      }
+      .correta {
+        background: #28a745 !important;
+        color: #fff;
+        border-color: #28a745 !important;
+        animation: flashGreen 0.8s;
+      }
+      .incorreta {
+        background: #dc3545 !important;
+        color: #fff;
+        border-color: #dc3545 !important;
+        animation: flashRed 0.8s;
+      }
+
+      /* ======== ANIMAÇÕES ======== */
+      @keyframes flashGreen {
+        0% {
+          background: #fff;
+        }
+        50% {
+          background: #28a745;
+        }
+        100% {
+          background: #28a745;
+        }
+      }
+      @keyframes flashRed {
+        0% {
+          background: #fff;
+        }
+        50% {
+          background: #dc3545;
+        }
+        100% {
+          background: #dc3545;
+        }
+      }
+
+      /* Box de explicação */
+      .explicacao {
+        margin-top: 15px;
+        padding: 12px;
+        background: #f8f9fa;
+        border-left: 5px solid #17a2b8;
+        border-radius: 6px;
+        font-size: 15px;
+      }
+      .explicacao strong {
+        color: #1e3c72;
+      }
+
+      /* Botões de navegação */
+      .nav-buttons {
+        margin-top: 20px;
+        text-align: center;
+      }
+      .nav-buttons button {
+        margin: 5px;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: 0.3s;
+      }
+      .nav-buttons button:hover {
+        opacity: 0.8;
+      }
+      .btn-prev {
+        background: #007bff;
+        color: #fff;
+      }
+      .btn-next {
+        background: #28a745;
+        color: #fff;
+      }
+      .btn-dica {
+        background: #ffc107;
+        color: #000;
+      }
+      .btn-finalizar {
+        background: #dc3545;
+        color: #fff;
+      }
+      .btn-menu {
+        background: #6c757d;
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <header>Simulado - Polícia Penal MG 2025</header>
+
+    <!-- LOGIN -->
+    <div id="login">
+      <h2>Bem-vindo!</h2>
+      <p>Digite seu nome para começar:</p>
+      <input type="text" id="nome" placeholder="Seu nome..." />
+      <button onclick="iniciar()">Entrar</button>
+    </div>
+
+    <!-- MENU DE DISCIPLINAS -->
+    <div id="menu" style="display: none">
+      <h2>Escolha a disciplina</h2>
+      <button class="btn-portugues" onclick="abrirDisciplina('portugues')">
+        📘 Português
+      </button>
+      <button class="btn-informatica" onclick="abrirDisciplina('informatica')">
+        💻 Informática
+      </button>
+      <button class="btn-penal" onclick="abrirDisciplina('penal')">
+        ⚖️ Direito Penal
+      </button>
+      <button
+        class="btn-constitucional"
+        onclick="abrirDisciplina('constitucional')"
+      >
+        📜 Direito Constitucional
+      </button>
+      <button class="btn-humanos" onclick="abrirDisciplina('humanos')">
+        🌍 Direitos Humanos
+      </button>
+      <button class="btn-legislacao" onclick="abrirDisciplina('legislacao')">
+        📕 Legislação Especial
+      </button>
+      <button class="btn-logica" onclick="abrirDisciplina('logica')">
+        🧮 Raciocínio Lógico
+      </button>
+    </div>
+
+    <!-- QUIZ -->
+    <div id="quiz" style="display: none">
+      <div id="placar">✅ Acertos: 0 | ❌ Erros: 0</div>
+      <div id="progress-container"><div id="progress-bar"></div></div>
+      <p id="progress-text" style="color: #fff"></p>
+      <div id="questao-box"></div>
+
+      <div class="nav-buttons">
+        <button class="btn-prev" onclick="anterior()">⬅️ Anterior</button>
+        <button class="btn-dica" onclick="mostrarDica()">💡 Dica</button>
+        <button class="btn-next" onclick="proxima()">➡️ Próxima</button>
+        <br />
+        <button class="btn-menu" onclick="voltarMenu()">
+          🔙 Voltar ao Menu
+        </button>
+        <button class="btn-finalizar" onclick="finalizar()">
+          ✅ Finalizar
+        </button>
+        <button class="btn-finalizar" onclick="finalizarDetalhado()">
+          📊 Finalizar Detalhado
+        </button>
+      </div>
+    </div>
+
+    <script>
+      // ================= BANCO DE QUESTÕES =================
+      const questoes = {
+        portugues: [
+          {
+            enunciado:
+              "Função da linguagem predominante em textos científicos:",
+            opcoes: [
+              "a) Apelativa",
+              "b) Poética",
+              "c) Referencial",
+              "d) Fática",
+            ],
+            correta: "c",
+            explicacao:
+              "A função <strong>referencial</strong> predomina em textos científicos, pois busca transmitir informação objetiva.",
+          },
+          {
+            enunciado: "Qual o sujeito em 'Choveu muito ontem'?",
+            opcoes: [
+              "a) Oração sem sujeito",
+              "b) Sujeito oculto",
+              "c) Sujeito simples",
+              "d) Sujeito indeterminado",
+            ],
+            correta: "a",
+            explicacao:
+              "O verbo 'chover' é impessoal, fenômeno da natureza, formando oração sem sujeito.",
+          },
+          {
+            enunciado:
+              "Na frase 'Os alunos estudaram bastante', o núcleo do sujeito é:",
+            opcoes: ["a) Estudaram", "b) Bastante", "c) Alunos", "d) Os"],
+            correta: "c",
+            explicacao: "O núcleo do sujeito é 'alunos'.",
+          },
+          {
+            enunciado: "Em 'Maria comprou um carro', a voz verbal é:",
+            opcoes: [
+              "a) Ativa",
+              "b) Passiva analítica",
+              "c) Passiva sintética",
+              "d) Reflexiva",
+            ],
+            correta: "a",
+            explicacao: "O sujeito pratica a ação: voz ativa.",
+          },
+          {
+            enunciado: "O plural de 'pão' é:",
+            opcoes: ["a) Pões", "b) Pães", "c) Pãos", "d) Põe"],
+            correta: "b",
+            explicacao: "Plural de 'ão' neste caso é 'ães'.",
+          },
+          {
+            enunciado: "Assinale a oração com sujeito indeterminado:",
+            opcoes: [
+              "a) Vendeu-se o carro",
+              "b) Vive-se bem aqui",
+              "c) Estuda-se bastante",
+              "d) Precisa-se de ajudantes",
+            ],
+            correta: "c",
+            explicacao:
+              "Sujeito indeterminado ocorre com verbo intransitivo ou transitivo indireto + 'se'.",
+          },
+          {
+            enunciado:
+              "A figura de linguagem em 'Ela chorava rios de lágrimas' é:",
+            opcoes: [
+              "a) Metáfora",
+              "b) Hipérbole",
+              "c) Metonímia",
+              "d) Ironia",
+            ],
+            correta: "b",
+            explicacao: "Hipérbole = exagero intencional.",
+          },
+          {
+            enunciado:
+              "Qual função da linguagem predomina em 'Compre já o seu!'?",
+            opcoes: [
+              "a) Poética",
+              "b) Apelativa",
+              "c) Fática",
+              "d) Metalinguística",
+            ],
+            correta: "b",
+            explicacao: "Função apelativa busca convencer o interlocutor.",
+          },
+          {
+            enunciado: "Em 'O livro foi lido pelos alunos', temos voz:",
+            opcoes: [
+              "a) Ativa",
+              "b) Passiva analítica",
+              "c) Passiva sintética",
+              "d) Reflexiva",
+            ],
+            correta: "b",
+            explicacao:
+              "Voz passiva analítica = foi + particípio + agente da passiva.",
+          },
+          {
+            enunciado: "A oração em 'Espero que você estude' é:",
+            opcoes: [
+              "a) Substantiva objetiva direta",
+              "b) Subjetiva",
+              "c) Adjetiva explicativa",
+              "d) Adverbial causal",
+            ],
+            correta: "a",
+            explicacao: "Funciona como objeto direto do verbo 'esperar'.",
+          },
+          {
+            enunciado:
+              "Figura de linguagem em 'Brasília decidiu aumentar os impostos':",
+            opcoes: [
+              "a) Metáfora",
+              "b) Sinédoque",
+              "c) Metonímia",
+              "d) Ironia",
+            ],
+            correta: "c",
+            explicacao: "Metonímia: Brasília representa o Governo.",
+          },
+          {
+            enunciado:
+              "Em 'O aluno, que chegou atrasado, perdeu a prova', a oração em destaque é:",
+            opcoes: [
+              "a) Subordinada substantiva",
+              "b) Subordinada adjetiva restritiva",
+              "c) Subordinada adjetiva explicativa",
+              "d) Oração coordenada",
+            ],
+            correta: "c",
+            explicacao: "Uso de vírgula indica oração adjetiva explicativa.",
+          },
+          {
+            enunciado: "A regência correta é:",
+            opcoes: [
+              "a) Aspirar o cargo",
+              "b) Assistir o jogo",
+              "c) Simpatizar com a ideia",
+              "d) Preferir mais isso",
+            ],
+            correta: "c",
+            explicacao: "O verbo simpatizar exige a preposição 'com'.",
+          },
+          {
+            enunciado: "Assinale o exemplo com crase obrigatória:",
+            opcoes: [
+              "a) Vou a escola",
+              "b) Entreguei a tarefa a professora",
+              "c) Dirigi-me à diretora",
+              "d) Cheguei a uma hora",
+            ],
+            correta: "c",
+            explicacao:
+              "Crase ocorre quando há fusão da preposição 'a' + artigo 'a'.",
+          },
+          {
+            enunciado: "O antônimo de 'benéfico' é:",
+            opcoes: ["a) Nocivo", "b) Útil", "c) Favorável", "d) Saudável"],
+            correta: "a",
+            explicacao: "'Benéfico' = que faz bem; 'Nocivo' = que faz mal.",
+          },
+          {
+            enunciado: "O plural de 'cidadão' é:",
+            opcoes: ["a) Cidadãos", "b) Cidadães", "c) Cidadões", "d) Cidões"],
+            correta: "a",
+            explicacao: "Plural de 'ão' → regra: 'ãos'.",
+          },
+          {
+            enunciado: "Qual alternativa apresenta erro de concordância?",
+            opcoes: [
+              "a) Haviam muitos alunos na sala",
+              "b) Faz anos que não nos vemos",
+              "c) Devem existir problemas",
+              "d) Existem provas fáceis",
+            ],
+            correta: "a",
+            explicacao:
+              "O verbo 'haver' no sentido de existir é impessoal, fica no singular.",
+          },
+          {
+            enunciado: "Qual a função da linguagem em 'Alô, está me ouvindo?'",
+            opcoes: [
+              "a) Fática",
+              "b) Poética",
+              "c) Referencial",
+              "d) Apelativa",
+            ],
+            correta: "a",
+            explicacao: "Função fática testa o canal da comunicação.",
+          },
+          {
+            enunciado: "Em 'Ele mesmo corrigiu a prova', o pronome 'mesmo' é:",
+            opcoes: [
+              "a) Pronome pessoal",
+              "b) Pronome demonstrativo",
+              "c) Pronome de tratamento",
+              "d) Pronome indefinido",
+            ],
+            correta: "b",
+            explicacao: "O 'mesmo' tem valor demonstrativo/reforço.",
+          },
+          {
+            enunciado:
+              "Assinale a alternativa correta quanto à colocação pronominal:",
+            opcoes: [
+              "a) Se arrependeu do erro",
+              "b) Arrependeu-se do erro",
+              "c) Arrependeu do erro-se",
+              "d) Do erro arrependeu-se-se",
+            ],
+            correta: "b",
+            explicacao: "Forma correta: 'Arrependeu-se'.",
+          },
+        ],
+
+        informatica: [
+          {
+            enunciado: "O atalho 'Ctrl + C' no Windows tem a função de:",
+            opcoes: ["a) Copiar", "b) Colar", "c) Recortar", "d) Desfazer"],
+            correta: "a",
+            explicacao:
+              "O comando 'Ctrl + C' copia o conteúdo selecionado para a área de transferência.",
+          },
+          {
+            enunciado: "O navegador Google Chrome é um software do tipo:",
+            opcoes: [
+              "a) Sistema operacional",
+              "b) Editor de texto",
+              "c) Navegador de internet",
+              "d) Antivírus",
+            ],
+            correta: "c",
+            explicacao:
+              "O Google Chrome é um navegador (browser) para acessar páginas da web.",
+          },
+          {
+            enunciado: "No Microsoft Word, o atalho 'Ctrl + Z' serve para:",
+            opcoes: [
+              "a) Refazer ação",
+              "b) Desfazer última ação",
+              "c) Salvar arquivo",
+              "d) Imprimir documento",
+            ],
+            correta: "b",
+            explicacao: "O comando 'Ctrl + Z' desfaz a última ação realizada.",
+          },
+          {
+            enunciado: "No Excel, a função '=SOMA(A1:A10)' retorna:",
+            opcoes: [
+              "a) A soma dos valores de A1 a A10",
+              "b) O maior valor de A1 a A10",
+              "c) A média dos valores de A1 a A10",
+              "d) O menor valor de A1 a A10",
+            ],
+            correta: "a",
+            explicacao:
+              "A função SOMA() retorna o total dos valores informados no intervalo.",
+          },
+          {
+            enunciado:
+              "Qual é a unidade básica de armazenamento de informações digitais?",
+            opcoes: ["a) Byte", "b) Bit", "c) Pixel", "d) Hertz"],
+            correta: "b",
+            explicacao:
+              "O bit é a menor unidade de informação digital (0 ou 1).",
+          },
+          {
+            enunciado: "No Windows, a Lixeira serve para:",
+            opcoes: [
+              "a) Apagar permanentemente arquivos",
+              "b) Guardar arquivos em nuvem",
+              "c) Armazenar temporariamente arquivos excluídos",
+              "d) Proteger arquivos com senha",
+            ],
+            correta: "c",
+            explicacao:
+              "A Lixeira guarda arquivos apagados até que sejam removidos definitivamente.",
+          },
+          {
+            enunciado: "Qual desses NÃO é um sistema operacional?",
+            opcoes: ["a) Linux", "b) Windows", "c) Android", "d) Google Drive"],
+            correta: "d",
+            explicacao:
+              "Google Drive é serviço de armazenamento em nuvem, não sistema operacional.",
+          },
+          {
+            enunciado: "Qual protocolo é usado para enviar e-mails?",
+            opcoes: ["a) HTTP", "b) SMTP", "c) FTP", "d) POP3"],
+            correta: "b",
+            explicacao:
+              "O protocolo SMTP (Simple Mail Transfer Protocol) envia mensagens de e-mail.",
+          },
+          {
+            enunciado:
+              "Qual tecla do teclado é usada para atualizar uma página da web?",
+            opcoes: ["a) F1", "b) F2", "c) F5", "d) F12"],
+            correta: "c",
+            explicacao: "A tecla F5 é usada para atualizar/recarregar páginas.",
+          },
+          {
+            enunciado: "No Excel, a função '=MÉDIA(10;20;30)' retorna:",
+            opcoes: ["a) 60", "b) 20", "c) 30", "d) 10"],
+            correta: "b",
+            explicacao: "Média aritmética simples: (10+20+30)/3 = 20.",
+          },
+          {
+            enunciado: "O que significa a sigla 'URL'?",
+            opcoes: [
+              "a) Uniform Resource Locator",
+              "b) Universal Research List",
+              "c) User Reference Link",
+              "d) United Resource Language",
+            ],
+            correta: "a",
+            explicacao: "URL é o endereço único de um recurso na web.",
+          },
+          {
+            enunciado:
+              "Qual ferramenta do Word serve para verificar erros de ortografia?",
+            opcoes: [
+              "a) Localizar e substituir",
+              "b) Corretor ortográfico",
+              "c) Revisão de texto manual",
+              "d) Estilo automático",
+            ],
+            correta: "b",
+            explicacao:
+              "O Word possui corretor ortográfico e gramatical automático.",
+          },
+          {
+            enunciado: "O Excel é um programa utilizado principalmente para:",
+            opcoes: [
+              "a) Editar imagens",
+              "b) Editar vídeos",
+              "c) Criar planilhas eletrônicas",
+              "d) Navegar na internet",
+            ],
+            correta: "c",
+            explicacao:
+              "Excel é software de planilhas, usado para cálculos e gráficos.",
+          },
+          {
+            enunciado: "Qual dos itens abaixo é um dispositivo de entrada?",
+            opcoes: [
+              "a) Impressora",
+              "b) Monitor",
+              "c) Mouse",
+              "d) Caixa de som",
+            ],
+            correta: "c",
+            explicacao:
+              "Mouse envia comandos ao computador, logo é dispositivo de entrada.",
+          },
+          {
+            enunciado: "Qual extensão indica um arquivo do Microsoft Word?",
+            opcoes: ["a) .xls", "b) .ppt", "c) .docx", "d) .mp3"],
+            correta: "c",
+            explicacao:
+              "Arquivos do Word normalmente usam extensão .doc ou .docx.",
+          },
+          {
+            enunciado: "No PowerPoint, os 'slides' são usados para:",
+            opcoes: [
+              "a) Editar textos longos",
+              "b) Criar apresentações",
+              "c) Planilhas financeiras",
+              "d) Editar bancos de dados",
+            ],
+            correta: "b",
+            explicacao: "Slides compõem as apresentações no PowerPoint.",
+          },
+          {
+            enunciado: "O antivírus tem a função principal de:",
+            opcoes: [
+              "a) Melhorar a velocidade do processador",
+              "b) Proteger contra programas maliciosos",
+              "c) Atualizar o sistema operacional",
+              "d) Organizar arquivos",
+            ],
+            correta: "b",
+            explicacao:
+              "Antivírus protege contra malwares, vírus e ameaças digitais.",
+          },
+          {
+            enunciado:
+              "Qual comando do Windows é usado para visualizar informações da rede?",
+            opcoes: ["a) ipconfig", "b) format", "c) ping", "d) dir"],
+            correta: "a",
+            explicacao:
+              "O comando 'ipconfig' exibe as configurações de rede do sistema.",
+          },
+          {
+            enunciado: "O armazenamento em nuvem permite:",
+            opcoes: [
+              "a) Usar mais memória RAM no computador",
+              "b) Acessar arquivos pela internet em qualquer dispositivo",
+              "c) Apagar arquivos automaticamente",
+              "d) Copiar arquivos apenas para pendrive",
+            ],
+            correta: "b",
+            explicacao: "Nuvem = acesso remoto a arquivos de qualquer lugar.",
+          },
+          {
+            enunciado: "O 'backup' serve para:",
+            opcoes: [
+              "a) Melhorar desempenho do sistema",
+              "b) Recuperar arquivos excluídos",
+              "c) Fazer cópias de segurança de dados",
+              "d) Excluir dados automaticamente",
+            ],
+            correta: "c",
+            explicacao:
+              "Backup = cópia de segurança para evitar perda de dados.",
+          },
+        ],
+        penal: [
+          {
+            enunciado: "O Direito Penal é considerado um ramo do:",
+            opcoes: [
+              "a) Direito Público",
+              "b) Direito Privado",
+              "c) Direito Civil",
+              "d) Direito Comercial",
+            ],
+            correta: "a",
+            explicacao:
+              "O Direito Penal pertence ao Direito Público, pois regula a relação entre Estado e indivíduo.",
+          },
+          {
+            enunciado:
+              "O princípio da legalidade penal está previsto na CF/88 no artigo:",
+            opcoes: [
+              "a) Art. 1º, III",
+              "b) Art. 5º, XXXIX",
+              "c) Art. 5º, XLVII",
+              "d) Art. 7º, I",
+            ],
+            correta: "b",
+            explicacao:
+              "Art. 5º, XXXIX: 'não há crime sem lei anterior que o defina, nem pena sem prévia cominação legal'.",
+          },
+          {
+            enunciado:
+              "Qual é a principal função da pena no Direito Penal moderno?",
+            opcoes: [
+              "a) Castigar o infrator",
+              "b) Ressocializar e prevenir novos crimes",
+              "c) Humilhar o condenado",
+              "d) Reparar o dano civil",
+            ],
+            correta: "b",
+            explicacao:
+              "A pena busca prevenir crimes e ressocializar o infrator, além da retribuição.",
+          },
+          {
+            enunciado: "O Código Penal brasileiro entrou em vigor no ano de:",
+            opcoes: ["a) 1940", "b) 1969", "c) 1988", "d) 2002"],
+            correta: "a",
+            explicacao: "O Código Penal atual é de 1940, Decreto-Lei nº 2.848.",
+          },
+          {
+            enunciado:
+              "O princípio da retroatividade da lei penal mais benéfica significa que:",
+            opcoes: [
+              "a) A lei mais severa retroage",
+              "b) A lei mais benéfica retroage",
+              "c) Nenhuma lei retroage",
+              "d) Toda lei retroage",
+            ],
+            correta: "b",
+            explicacao:
+              "Art. 5º, XL da CF/88 e art. 2º do CP: a lei penal mais benéfica retroage.",
+          },
+          {
+            enunciado: "O erro de tipo ocorre quando:",
+            opcoes: [
+              "a) O agente ignora a ilicitude do fato",
+              "b) O agente erra sobre elementos constitutivos do tipo",
+              "c) O agente age sem dolo",
+              "d) O agente é coagido",
+            ],
+            correta: "b",
+            explicacao:
+              "Erro de tipo = desconhecimento ou erro sobre elemento essencial da conduta.",
+          },
+          {
+            enunciado: "A legítima defesa exclui:",
+            opcoes: [
+              "a) A culpabilidade",
+              "b) A ilicitude",
+              "c) A tipicidade",
+              "d) A punibilidade",
+            ],
+            correta: "b",
+            explicacao:
+              "Legítima defesa é uma causa de exclusão da ilicitude (art. 23, II, CP).",
+          },
+          {
+            enunciado: "O crime de homicídio simples tem pena prevista de:",
+            opcoes: [
+              "a) 1 a 4 anos",
+              "b) 6 meses a 2 anos",
+              "c) 6 a 20 anos",
+              "d) 15 a 30 anos",
+            ],
+            correta: "c",
+            explicacao:
+              "Art. 121 do CP: homicídio simples = 6 a 20 anos de reclusão.",
+          },
+          {
+            enunciado: "O crime culposo caracteriza-se por:",
+            opcoes: [
+              "a) Dolo direto",
+              "b) Dolo eventual",
+              "c) Negligência, imprudência ou imperícia",
+              "d) Intenção clara de cometer o crime",
+            ],
+            correta: "c",
+            explicacao:
+              "Culpa = conduta sem intenção, mas com negligência, imprudência ou imperícia.",
+          },
+          {
+            enunciado: "A prescrição penal é:",
+            opcoes: [
+              "a) A perda do direito de punir pelo Estado",
+              "b) O aumento da pena",
+              "c) A suspensão da pena",
+              "d) O perdão judicial",
+            ],
+            correta: "a",
+            explicacao:
+              "Prescrição = perda do poder estatal de punir pelo decurso do tempo.",
+          },
+          {
+            enunciado: "A tentativa ocorre quando:",
+            opcoes: [
+              "a) O agente inicia a execução e consuma o crime",
+              "b) O agente inicia a execução e não consuma por circunstâncias alheias à sua vontade",
+              "c) O agente apenas pensa no crime",
+              "d) O agente desiste voluntariamente",
+            ],
+            correta: "b",
+            explicacao:
+              "Tentativa (art. 14, II, CP): inicia a execução, mas não consuma por fatores externos.",
+          },
+          {
+            enunciado: "O concurso material de crimes ocorre quando:",
+            opcoes: [
+              "a) Vários crimes resultam de uma só ação",
+              "b) O agente pratica várias condutas, cada uma resultando em crime",
+              "c) Um crime serve como meio para outro",
+              "d) Dois agentes praticam o mesmo crime",
+            ],
+            correta: "b",
+            explicacao:
+              "Concurso material: várias condutas, vários crimes, somam-se as penas (art. 69, CP).",
+          },
+          {
+            enunciado:
+              "O regime inicial de cumprimento de pena superior a 8 anos é:",
+            opcoes: [
+              "a) Aberto",
+              "b) Semi-aberto",
+              "c) Fechado",
+              "d) Livramento condicional",
+            ],
+            correta: "c",
+            explicacao:
+              "Art. 33, CP: penas superiores a 8 anos → regime inicial fechado.",
+          },
+          {
+            enunciado:
+              "A inimputabilidade penal por doença mental está prevista no:",
+            opcoes: [
+              "a) Art. 23, CP",
+              "b) Art. 26, CP",
+              "c) Art. 59, CP",
+              "d) Art. 129, CP",
+            ],
+            correta: "b",
+            explicacao:
+              "Art. 26, CP: inimputável quem, por doença mental, era incapaz de entender o caráter ilícito do fato.",
+          },
+          {
+            enunciado: "O princípio da insignificância pode:",
+            opcoes: [
+              "a) Excluir a ilicitude",
+              "b) Excluir a tipicidade",
+              "c) Excluir a culpabilidade",
+              "d) Excluir a punibilidade",
+            ],
+            correta: "b",
+            explicacao:
+              "A insignificância exclui a tipicidade material da conduta.",
+          },
+          {
+            enunciado: "A coação irresistível exclui:",
+            opcoes: [
+              "a) A ilicitude",
+              "b) A culpabilidade",
+              "c) A tipicidade",
+              "d) A punibilidade",
+            ],
+            correta: "b",
+            explicacao:
+              "Coação moral irresistível exclui a culpabilidade (art. 22, CP).",
+          },
+          {
+            enunciado: "O crime impossível está previsto no art.:",
+            opcoes: [
+              "a) 17 do CP",
+              "b) 121 do CP",
+              "c) 33 do CP",
+              "d) 69 do CP",
+            ],
+            correta: "a",
+            explicacao:
+              "Art. 17, CP: crime impossível por ineficácia absoluta do meio ou impropriedade absoluta do objeto.",
+          },
+          {
+            enunciado: "A reincidência é considerada:",
+            opcoes: [
+              "a) Circunstância atenuante",
+              "b) Circunstância agravante",
+              "c) Causa de exclusão da ilicitude",
+              "d) Causa de diminuição da pena",
+            ],
+            correta: "b",
+            explicacao: "A reincidência é agravante genérica (art. 61, I, CP).",
+          },
+          {
+            enunciado: "O sursis é:",
+            opcoes: [
+              "a) Suspensão condicional da pena",
+              "b) Redução de pena",
+              "c) Acordo de não persecução penal",
+              "d) Perdão judicial",
+            ],
+            correta: "a",
+            explicacao:
+              "Sursis = suspensão condicional da pena privativa de liberdade (art. 77, CP).",
+          },
+          {
+            enunciado: "O princípio 'ne bis in idem' significa:",
+            opcoes: [
+              "a) Ninguém pode ser punido duas vezes pelo mesmo fato",
+              "b) Não há crime sem lei",
+              "c) Nenhuma pena sem processo",
+              "d) Ninguém será considerado culpado sem sentença",
+            ],
+            correta: "a",
+            explicacao:
+              "Ne bis in idem: vedação de dupla punição pelo mesmo fato.",
+          },
+        ],
+        constitucional: [
+          {
+            enunciado:
+              "Quem é o titular do poder constituinte originário no Brasil?",
+            opcoes: [
+              "a) O Congresso Nacional",
+              "b) O Supremo Tribunal Federal",
+              "c) O Povo",
+              "d) O Presidente da República",
+            ],
+            correta: "c",
+            explicacao:
+              "Segundo o art. 1º, parágrafo único, da Constituição Federal, todo poder emana do povo, que o exerce por meio de representantes eleitos ou diretamente.",
+          },
+          {
+            enunciado:
+              "Qual o princípio que assegura que ninguém será obrigado a fazer ou deixar de fazer algo senão em virtude de lei?",
+            opcoes: [
+              "a) Princípio da legalidade",
+              "b) Princípio da isonomia",
+              "c) Princípio da eficiência",
+              "d) Princípio da moralidade",
+            ],
+            correta: "a",
+            explicacao:
+              "O art. 5º, II, da CF/88 estabelece o princípio da legalidade: ninguém será obrigado a fazer ou deixar de fazer alguma coisa senão em virtude de lei.",
+          },
+          {
+            enunciado:
+              "Qual é a forma de Estado adotada pela Constituição Federal de 1988?",
+            opcoes: [
+              "a) Estado unitário",
+              "b) Confederação",
+              "c) Federação",
+              "d) Monarquia",
+            ],
+            correta: "c",
+            explicacao:
+              "O Brasil adota a forma de Estado federativa (art. 1º, caput, CF/88).",
+          },
+          {
+            enunciado: "Qual o regime de governo previsto pela CF/88?",
+            opcoes: [
+              "a) Parlamentarismo",
+              "b) Presidencialismo",
+              "c) Absolutismo",
+              "d) Monarquia constitucional",
+            ],
+            correta: "b",
+            explicacao:
+              "O art. 2º da CF/88 prevê a separação dos poderes dentro de um regime presidencialista.",
+          },
+          {
+            enunciado:
+              "Qual é a cláusula pétrea expressa no art. 60, §4º da CF/88?",
+            opcoes: [
+              "a) Forma federativa do Estado",
+              "b) Mandato do Presidente da República",
+              "c) Criação de impostos",
+              "d) Política econômica",
+            ],
+            correta: "a",
+            explicacao:
+              "O art. 60, §4º, estabelece como cláusulas pétreas a forma federativa de Estado, voto direto, separação de poderes e direitos fundamentais.",
+          },
+          {
+            enunciado: "Quem exerce o controle difuso de constitucionalidade?",
+            opcoes: [
+              "a) Apenas o STF",
+              "b) Apenas o Congresso Nacional",
+              "c) Qualquer juiz ou tribunal",
+              "d) Apenas o Presidente da República",
+            ],
+            correta: "c",
+            explicacao:
+              "O controle difuso é exercido por qualquer juiz ou tribunal no julgamento de casos concretos.",
+          },
+          {
+            enunciado:
+              "Qual órgão exerce o controle concentrado de constitucionalidade?",
+            opcoes: [
+              "a) Congresso Nacional",
+              "b) Supremo Tribunal Federal",
+              "c) Presidente da República",
+              "d) Tribunal de Contas da União",
+            ],
+            correta: "b",
+            explicacao:
+              "O STF exerce o controle concentrado por meio de ADI, ADC, ADPF e ADO.",
+          },
+          {
+            enunciado:
+              "Qual direito fundamental é considerado cláusula pétrea?",
+            opcoes: [
+              "a) Direito de greve",
+              "b) Direitos e garantias individuais",
+              "c) Direitos políticos",
+              "d) Direito à saúde",
+            ],
+            correta: "b",
+            explicacao:
+              "Os direitos e garantias individuais são protegidos como cláusulas pétreas (art. 60, §4º, IV, CF/88).",
+          },
+          {
+            enunciado:
+              "Qual é a idade mínima para ser eleito Presidente da República?",
+            opcoes: ["a) 30 anos", "b) 35 anos", "c) 40 anos", "d) 25 anos"],
+            correta: "b",
+            explicacao:
+              "Segundo o art. 14, §3º, VI, da CF/88, a idade mínima é de 35 anos para Presidente e Vice.",
+          },
+          {
+            enunciado: "Quem possui iniciativa de lei privativa?",
+            opcoes: [
+              "a) Qualquer parlamentar",
+              "b) Apenas o Presidente da República",
+              "c) Apenas o STF",
+              "d) O Ministério Público",
+            ],
+            correta: "b",
+            explicacao:
+              "O art. 61, §1º, CF/88 estabelece hipóteses de iniciativa privativa do Presidente da República.",
+          },
+          {
+            enunciado: "Qual é o prazo do mandato dos Ministros do STF?",
+            opcoes: [
+              "a) 5 anos",
+              "b) 8 anos",
+              "c) 15 anos",
+              "d) Vitalício até aposentadoria compulsória",
+            ],
+            correta: "d",
+            explicacao:
+              "Os Ministros do STF têm mandato vitalício, aposentando-se compulsoriamente aos 75 anos (EC 88/2015).",
+          },
+          {
+            enunciado: "Qual é a idade mínima para ser Senador no Brasil?",
+            opcoes: ["a) 21 anos", "b) 30 anos", "c) 35 anos", "d) 25 anos"],
+            correta: "b",
+            explicacao:
+              "Art. 14, §3º, VI, CF/88: a idade mínima é de 30 anos para Senador.",
+          },
+          {
+            enunciado: "Quem exerce a função típica de legislar?",
+            opcoes: [
+              "a) Executivo",
+              "b) Legislativo",
+              "c) Judiciário",
+              "d) Ministério Público",
+            ],
+            correta: "b",
+            explicacao:
+              "A função típica de legislar cabe ao Poder Legislativo (art. 44 e seguintes, CF/88).",
+          },
+          {
+            enunciado:
+              "Qual poder é responsável por aplicar a lei em casos concretos?",
+            opcoes: [
+              "a) Poder Legislativo",
+              "b) Poder Executivo",
+              "c) Poder Judiciário",
+              "d) Tribunal de Contas",
+            ],
+            correta: "c",
+            explicacao:
+              "A função típica do Poder Judiciário é julgar e aplicar a lei em casos concretos.",
+          },
+          {
+            enunciado: "O que significa a separação de poderes no Brasil?",
+            opcoes: [
+              "a) Cada poder é independente e não há cooperação",
+              "b) Cada poder é independente e harmônico entre si",
+              "c) Apenas o Legislativo é soberano",
+              "d) Apenas o Executivo é soberano",
+            ],
+            correta: "b",
+            explicacao:
+              "Art. 2º da CF/88: são poderes da União, independentes e harmônicos entre si, o Legislativo, o Executivo e o Judiciário.",
+          },
+          {
+            enunciado: "O que é a ação direta de inconstitucionalidade (ADI)?",
+            opcoes: [
+              "a) Controle político exercido pelo Congresso",
+              "b) Controle judicial concentrado de constitucionalidade",
+              "c) Ação penal pública",
+              "d) Recurso ordinário",
+            ],
+            correta: "b",
+            explicacao:
+              "A ADI é uma ação do controle concentrado de constitucionalidade, julgada pelo STF.",
+          },
+          {
+            enunciado: "Quem pode propor uma ADI no Brasil?",
+            opcoes: [
+              "a) Qualquer cidadão",
+              "b) O Presidente da República, PGR, Governadores, OAB e outros legitimados",
+              "c) Apenas o STF",
+              "d) Qualquer juiz federal",
+            ],
+            correta: "b",
+            explicacao:
+              "Art. 103 da CF/88 lista os legitimados à propositura de ADI, como Presidente, Mesa do Senado, PGR, Governadores, OAB, etc.",
+          },
+          {
+            enunciado: "Qual é a forma de sufrágio adotada no Brasil?",
+            opcoes: [
+              "a) Universal, direto e secreto",
+              "b) Universal, aberto e facultativo",
+              "c) Censitário",
+              "d) Indireto",
+            ],
+            correta: "a",
+            explicacao:
+              "O Brasil adota sufrágio universal, direto e secreto (art. 14, CF/88).",
+          },
+          {
+            enunciado: "Qual é o órgão máximo da Justiça Eleitoral?",
+            opcoes: ["a) TRE", "b) TSE", "c) STF", "d) Congresso Nacional"],
+            correta: "b",
+            explicacao:
+              "O Tribunal Superior Eleitoral (TSE) é o órgão máximo da Justiça Eleitoral.",
+          },
+          {
+            enunciado:
+              "Quem julga o Presidente da República por crimes comuns?",
+            opcoes: [
+              "a) Câmara dos Deputados",
+              "b) Senado Federal",
+              "c) Supremo Tribunal Federal",
+              "d) Superior Tribunal de Justiça",
+            ],
+            correta: "c",
+            explicacao:
+              "Nos crimes comuns, o Presidente da República é julgado pelo STF (art. 102, I, b, CF/88).",
+          },
+        ],
+        penal: [
+          {
+            enunciado: "Qual é a principal função do Direito Penal?",
+            opcoes: [
+              "a) Regular relações civis",
+              "b) Definir crimes e cominar penas",
+              "c) Organizar a administração pública",
+              "d) Regular contratos comerciais",
+            ],
+            correta: "b",
+            explicacao:
+              "O Direito Penal tem como função definir crimes e prever as respectivas penas (art. 1º, CP).",
+          },
+          {
+            enunciado:
+              "Qual é o princípio segundo o qual não há crime sem lei anterior que o defina?",
+            opcoes: [
+              "a) Princípio da legalidade",
+              "b) Princípio da anterioridade",
+              "c) Princípio da reserva legal",
+              "d) Todas as alternativas",
+            ],
+            correta: "d",
+            explicacao:
+              "O princípio da legalidade (art. 1º, CP e art. 5º, XXXIX, CF) se desdobra em anterioridade e reserva legal.",
+          },
+          {
+            enunciado: "O que é crime omissivo próprio?",
+            opcoes: [
+              "a) Quando o agente faz mais do que deveria",
+              "b) Quando a omissão só é punida se causar resultado",
+              "c) Quando a mera omissão já configura crime",
+              "d) Quando há culpa exclusiva da vítima",
+            ],
+            correta: "c",
+            explicacao:
+              "Crimes omissivos próprios se consumam apenas com a omissão, ex.: omissão de socorro (art. 135, CP).",
+          },
+          {
+            enunciado: "O que caracteriza a tentativa de crime?",
+            opcoes: [
+              "a) Execução completa",
+              "b) Resultado não alcançado por circunstâncias alheias à vontade do agente",
+              "c) Falta de dolo",
+              "d) Excludente de ilicitude",
+            ],
+            correta: "b",
+            explicacao:
+              "A tentativa ocorre quando o agente inicia a execução, mas o resultado não ocorre por circunstâncias alheias à sua vontade (art. 14, II, CP).",
+          },
+          {
+            enunciado: "A pena aplicada a um crime tentado será:",
+            opcoes: [
+              "a) A mesma do crime consumado",
+              "b) Isenta de punição",
+              "c) Reduzida de 1/3 a 2/3",
+              "d) Reduzida pela metade",
+            ],
+            correta: "c",
+            explicacao:
+              "Na tentativa, a pena é reduzida de 1/3 a 2/3, conforme a proximidade da consumação (art. 14, parágrafo único, CP).",
+          },
+          {
+            enunciado:
+              "Qual é a idade mínima para a responsabilidade penal no Brasil?",
+            opcoes: ["a) 16 anos", "b) 18 anos", "c) 21 anos", "d) 14 anos"],
+            correta: "b",
+            explicacao:
+              "De acordo com o art. 228 da CF/88 e art. 27 do CP, os menores de 18 anos são inimputáveis.",
+          },
+          {
+            enunciado: "O que é dolo eventual?",
+            opcoes: [
+              "a) Vontade consciente de praticar o crime",
+              "b) Assumir o risco de produzir o resultado",
+              "c) Falta de previsão do resultado",
+              "d) Negligência",
+            ],
+            correta: "b",
+            explicacao:
+              "O dolo eventual ocorre quando o agente assume o risco de produzir o resultado (art. 18, I, CP).",
+          },
+          {
+            enunciado:
+              "A embriaguez completa proveniente de caso fortuito ou força maior:",
+            opcoes: [
+              "a) Exclui a culpabilidade",
+              "b) Agrava a pena",
+              "c) Não possui relevância penal",
+              "d) É sempre considerada dolosa",
+            ],
+            correta: "a",
+            explicacao:
+              "Art. 28, §1º, CP: a embriaguez completa, proveniente de caso fortuito ou força maior, exclui a culpabilidade.",
+          },
+          {
+            enunciado: "Qual é a diferença entre coautoria e participação?",
+            opcoes: [
+              "a) Coautoria exige domínio do fato, participação não",
+              "b) Participação é sempre mais grave",
+              "c) Coautoria só existe em crimes culposos",
+              "d) Não existe diferença",
+            ],
+            correta: "a",
+            explicacao:
+              "Na coautoria há divisão de tarefas e domínio do fato; na participação, o agente apenas contribui de forma acessória (art. 29, CP).",
+          },
+          {
+            enunciado:
+              "O homicídio simples está previsto em qual artigo do CP?",
+            opcoes: [
+              "a) Art. 121",
+              "b) Art. 122",
+              "c) Art. 129",
+              "d) Art. 155",
+            ],
+            correta: "a",
+            explicacao:
+              "O homicídio simples está previsto no art. 121 do Código Penal.",
+          },
+          {
+            enunciado: "Qual é a pena prevista para homicídio simples?",
+            opcoes: [
+              "a) Reclusão, de 6 a 20 anos",
+              "b) Reclusão, de 12 a 30 anos",
+              "c) Reclusão, de 1 a 4 anos",
+              "d) Detenção, de 1 a 3 anos",
+            ],
+            correta: "a",
+            explicacao:
+              "O art. 121, caput, CP prevê pena de reclusão de 6 a 20 anos para homicídio simples.",
+          },
+          {
+            enunciado: "Qual é o crime de subtração de coisa alheia móvel?",
+            opcoes: [
+              "a) Estelionato",
+              "b) Furto",
+              "c) Apropriação indébita",
+              "d) Roubo",
+            ],
+            correta: "b",
+            explicacao:
+              "O furto está previsto no art. 155, CP: subtrair, para si ou para outrem, coisa alheia móvel.",
+          },
+          {
+            enunciado: "No roubo, além da subtração, é necessário:",
+            opcoes: [
+              "a) Uso de violência ou grave ameaça",
+              "b) Dolo eventual",
+              "c) Concurso de agentes",
+              "d) Uso de fraude",
+            ],
+            correta: "a",
+            explicacao:
+              "Art. 157, CP: o roubo exige violência ou grave ameaça à pessoa.",
+          },
+          {
+            enunciado: "O peculato é um crime:",
+            opcoes: [
+              "a) Contra a administração pública",
+              "b) Contra a fé pública",
+              "c) Contra o patrimônio privado",
+              "d) Contra a organização do trabalho",
+            ],
+            correta: "a",
+            explicacao:
+              "O peculato está previsto no art. 312, CP, como crime contra a Administração Pública.",
+          },
+          {
+            enunciado: "A prescrição penal regula-se pela:",
+            opcoes: [
+              "a) Idade do agente",
+              "b) Pena cominada em abstrato",
+              "c) Condição econômica",
+              "d) Vontade do juiz",
+            ],
+            correta: "b",
+            explicacao:
+              "A prescrição regula-se pela pena em abstrato (art. 109, CP).",
+          },
+          {
+            enunciado: "O que é legítima defesa?",
+            opcoes: [
+              "a) Exercício regular de direito",
+              "b) Estado de necessidade",
+              "c) Reação contra agressão injusta, atual ou iminente",
+              "d) Cumprimento de ordem legal",
+            ],
+            correta: "c",
+            explicacao:
+              "Art. 25, CP: entende-se em legítima defesa quem, usando moderadamente dos meios necessários, repele injusta agressão, atual ou iminente.",
+          },
+          {
+            enunciado: "Quem comete crime culposo:",
+            opcoes: [
+              "a) Tem intenção de cometer o crime",
+              "b) Assume o risco do resultado",
+              "c) Age com imprudência, negligência ou imperícia",
+              "d) Age em estado de necessidade",
+            ],
+            correta: "c",
+            explicacao:
+              "Crime culposo ocorre quando o agente não tem intenção, mas age com imprudência, negligência ou imperícia (art. 18, II, CP).",
+          },
+          {
+            enunciado: "O que significa concurso de pessoas?",
+            opcoes: [
+              "a) Dois ou mais crimes cometidos pela mesma pessoa",
+              "b) Mais de um agente praticando a mesma infração penal",
+              "c) Crimes praticados em momentos diferentes",
+              "d) Concurso público fraudado",
+            ],
+            correta: "b",
+            explicacao:
+              "Concurso de pessoas ocorre quando duas ou mais pessoas concorrem para a prática do mesmo crime (art. 29, CP).",
+          },
+          {
+            enunciado: "Qual o efeito da reincidência no Direito Penal?",
+            opcoes: [
+              "a) Reduz a pena",
+              "b) Aumenta a pena",
+              "c) Extingue a punibilidade",
+              "d) Torna o crime atípico",
+            ],
+            correta: "b",
+            explicacao:
+              "A reincidência é agravante genérica, prevista no art. 61, I, CP.",
+          },
+          {
+            enunciado: "O que significa crime hediondo?",
+            opcoes: [
+              "a) Crime sem gravidade",
+              "b) Crime com pena menor",
+              "c) Crime de extrema gravidade listado em lei",
+              "d) Crime contra a honra",
+            ],
+            correta: "c",
+            explicacao:
+              "Crimes hediondos são aqueles listados na Lei 8.072/90, considerados de extrema gravidade.",
+          },
+        ],
+        humanos: [
+          {
+            enunciado:
+              "Qual documento é considerado a base dos direitos humanos modernos?",
+            opcoes: [
+              "a) Constituição Brasileira de 1988",
+              "b) Declaração Universal dos Direitos Humanos de 1948",
+              "c) Carta da ONU de 1945",
+              "d) Convenção Americana de Direitos Humanos",
+            ],
+            correta: "b",
+            explicacao:
+              "A Declaração Universal dos Direitos Humanos de 1948 é a base da proteção internacional contemporânea.",
+          },
+          {
+            enunciado:
+              "Qual princípio garante que os direitos humanos são válidos para todas as pessoas?",
+            opcoes: [
+              "a) Universalidade",
+              "b) Relatividade",
+              "c) Territorialidade",
+              "d) Individualidade",
+            ],
+            correta: "a",
+            explicacao:
+              "O princípio da universalidade garante que os direitos humanos são válidos para todos os indivíduos, sem distinção.",
+          },
+          {
+            enunciado:
+              "Qual tratado internacional é conhecido como Pacto de San José da Costa Rica?",
+            opcoes: [
+              "a) Pacto Internacional dos Direitos Civis e Políticos",
+              "b) Convenção Americana de Direitos Humanos",
+              "c) Carta da ONU",
+              "d) Tratado de Lisboa",
+            ],
+            correta: "b",
+            explicacao:
+              "O Pacto de San José da Costa Rica é a Convenção Americana de Direitos Humanos (1969).",
+          },
+          {
+            enunciado:
+              "Qual é o órgão da ONU responsável pela proteção internacional dos direitos humanos?",
+            opcoes: [
+              "a) Conselho de Direitos Humanos",
+              "b) Tribunal Penal Internacional",
+              "c) UNESCO",
+              "d) OMS",
+            ],
+            correta: "a",
+            explicacao:
+              "O Conselho de Direitos Humanos da ONU é o principal órgão de monitoramento e promoção.",
+          },
+          {
+            enunciado:
+              "O Brasil é signatário de qual tratado de proteção dos direitos humanos?",
+            opcoes: [
+              "a) Convenção Europeia de Direitos Humanos",
+              "b) Pacto de San José da Costa Rica",
+              "c) Tratado de Versalhes",
+              "d) Carta do Atlântico",
+            ],
+            correta: "b",
+            explicacao:
+              "O Brasil ratificou a Convenção Americana de Direitos Humanos em 1992.",
+          },
+          {
+            enunciado:
+              "O princípio da indivisibilidade dos direitos humanos significa que:",
+            opcoes: [
+              "a) Apenas alguns direitos são fundamentais",
+              "b) Direitos civis e políticos são independentes dos sociais",
+              "c) Todos os direitos humanos são interdependentes e complementares",
+              "d) Apenas direitos de liberdade são prioritários",
+            ],
+            correta: "c",
+            explicacao:
+              "A indivisibilidade indica que os direitos humanos são igualmente essenciais e complementares.",
+          },
+          {
+            enunciado: "O Brasil aboliu a pena de morte, exceto em caso de:",
+            opcoes: [
+              "a) Crimes hediondos",
+              "b) Tráfico de drogas",
+              "c) Guerra declarada",
+              "d) Terrorismo",
+            ],
+            correta: "c",
+            explicacao:
+              "O art. 5º, XLVII, CF/88 proíbe a pena de morte, salvo em caso de guerra declarada.",
+          },
+          {
+            enunciado:
+              "Qual é a principal função da Comissão Interamericana de Direitos Humanos?",
+            opcoes: [
+              "a) Criar leis internacionais",
+              "b) Julgar crimes contra a humanidade",
+              "c) Promover e proteger direitos humanos no continente americano",
+              "d) Fiscalizar eleições",
+            ],
+            correta: "c",
+            explicacao:
+              "A CIDH atua na promoção e proteção dos direitos humanos nas Américas.",
+          },
+          {
+            enunciado:
+              "O princípio da dignidade da pessoa humana está previsto na CF/88 como:",
+            opcoes: [
+              "a) Direito fundamental",
+              "b) Objetivo fundamental",
+              "c) Fundamento da República",
+              "d) Cláusula pétrea apenas",
+            ],
+            correta: "c",
+            explicacao:
+              "Art. 1º, III, CF/88: a dignidade da pessoa humana é fundamento da República Federativa do Brasil.",
+          },
+          {
+            enunciado:
+              "Qual órgão brasileiro atua como guardião da Constituição e, por consequência, dos direitos humanos?",
+            opcoes: [
+              "a) Congresso Nacional",
+              "b) Supremo Tribunal Federal",
+              "c) Tribunal de Contas da União",
+              "d) Senado Federal",
+            ],
+            correta: "b",
+            explicacao:
+              "O STF é guardião da Constituição e responsável por garantir a proteção dos direitos fundamentais.",
+          },
+          {
+            enunciado:
+              "Qual princípio dos direitos humanos afirma que não se pode retroceder em direitos conquistados?",
+            opcoes: [
+              "a) Proibição do retrocesso",
+              "b) Legalidade",
+              "c) Anterioridade",
+              "d) Igualdade",
+            ],
+            correta: "a",
+            explicacao:
+              "A proibição do retrocesso social impede a supressão de direitos já reconhecidos.",
+          },
+          {
+            enunciado: "O direito de habeas corpus protege:",
+            opcoes: [
+              "a) A liberdade de locomoção",
+              "b) O direito à vida",
+              "c) O direito à saúde",
+              "d) O direito à moradia",
+            ],
+            correta: "a",
+            explicacao:
+              "O habeas corpus protege a liberdade de locomoção contra ilegalidade ou abuso de poder.",
+          },
+          {
+            enunciado:
+              "Qual documento internacional inspirou a Declaração Universal de 1948?",
+            opcoes: [
+              "a) Declaração de Virgínia (1776)",
+              "b) Carta Magna (1215)",
+              "c) Declaração dos Direitos do Homem e do Cidadão (1789)",
+              "d) Todos os anteriores",
+            ],
+            correta: "d",
+            explicacao:
+              "A DUDH foi inspirada em vários documentos históricos de direitos e liberdades.",
+          },
+          {
+            enunciado: "O direito ao meio ambiente equilibrado é considerado:",
+            opcoes: [
+              "a) Direito civil",
+              "b) Direito coletivo e difuso",
+              "c) Direito político",
+              "d) Direito penal",
+            ],
+            correta: "b",
+            explicacao:
+              "O meio ambiente equilibrado é direito difuso/coletivo, previsto no art. 225 da CF/88.",
+          },
+          {
+            enunciado: "Quem pode impetrar habeas corpus?",
+            opcoes: [
+              "a) Apenas advogados",
+              "b) Apenas o Ministério Público",
+              "c) Qualquer pessoa em favor de si ou de outrem",
+              "d) Apenas o STF",
+            ],
+            correta: "c",
+            explicacao:
+              "O habeas corpus pode ser impetrado por qualquer pessoa, em causa própria ou de terceiros (art. 654, CPP).",
+          },
+          {
+            enunciado: "A liberdade de expressão pode ser limitada quando:",
+            opcoes: [
+              "a) Contraria a opinião da maioria",
+              "b) Atenta contra a honra, a moral ou incita crimes",
+              "c) Discorda do governo",
+              "d) É emitida de forma anônima",
+            ],
+            correta: "b",
+            explicacao:
+              "A liberdade de expressão não é absoluta; encontra limites na proteção à honra, moral e segurança.",
+          },
+          {
+            enunciado: "Qual é a natureza jurídica do direito de asilo?",
+            opcoes: [
+              "a) Direito absoluto",
+              "b) Direito político",
+              "c) Direito humanitário",
+              "d) Direito coletivo",
+            ],
+            correta: "c",
+            explicacao:
+              "O direito de asilo é instituto humanitário de proteção internacional a perseguidos.",
+          },
+          {
+            enunciado:
+              "O Estatuto da Criança e do Adolescente (ECA) é um exemplo de aplicação de qual princípio?",
+            opcoes: [
+              "a) Princípio da prioridade absoluta",
+              "b) Princípio da dignidade da pessoa humana",
+              "c) Princípio da legalidade",
+              "d) Princípio da igualdade formal",
+            ],
+            correta: "a",
+            explicacao:
+              "O ECA aplica o princípio da prioridade absoluta à criança e ao adolescente (art. 227, CF/88).",
+          },
+          {
+            enunciado:
+              "Qual é o papel do Ministério Público na defesa dos direitos humanos?",
+            opcoes: [
+              "a) Representar apenas o Estado",
+              "b) Defender interesses sociais e individuais indisponíveis",
+              "c) Elaborar leis",
+              "d) Julgar processos",
+            ],
+            correta: "b",
+            explicacao:
+              "Art. 127, CF/88: cabe ao MP defender os interesses sociais e individuais indisponíveis, como os direitos humanos.",
+          },
+          {
+            enunciado:
+              "Qual é a principal característica dos direitos fundamentais de primeira geração?",
+            opcoes: [
+              "a) Direitos sociais",
+              "b) Direitos de liberdade",
+              "c) Direitos de solidariedade",
+              "d) Direitos difusos",
+            ],
+            correta: "b",
+            explicacao:
+              "Primeira geração de direitos fundamentais corresponde aos direitos de liberdade (civis e políticos).",
+          },
+        ],
+        legislacao: [
+          {
+            enunciado: "Qual lei é conhecida como Lei de Execução Penal (LEP)?",
+            opcoes: [
+              "a) Lei nº 7.210/1984",
+              "b) Lei nº 8.072/1990",
+              "c) Lei nº 9.455/1997",
+              "d) Lei nº 11.343/2006",
+            ],
+            correta: "a",
+            explicacao:
+              "A Lei nº 7.210/84 é a Lei de Execução Penal, que regulamenta a execução das penas.",
+          },
+          {
+            enunciado: "A Lei nº 8.072/90 trata de:",
+            opcoes: [
+              "a) Crimes de trânsito",
+              "b) Crimes hediondos",
+              "c) Crimes ambientais",
+              "d) Crimes eleitorais",
+            ],
+            correta: "b",
+            explicacao:
+              "A Lei nº 8.072/90 dispõe sobre os crimes hediondos e equiparados.",
+          },
+          {
+            enunciado: "Qual lei define os crimes de tortura no Brasil?",
+            opcoes: [
+              "a) Lei nº 9.613/1998",
+              "b) Lei nº 8.072/1990",
+              "c) Lei nº 9.455/1997",
+              "d) Lei nº 11.343/2006",
+            ],
+            correta: "c",
+            explicacao:
+              "A Lei nº 9.455/97 define os crimes de tortura e suas penas.",
+          },
+          {
+            enunciado: "A Lei Maria da Penha é a de nº:",
+            opcoes: [
+              "a) 8.072/1990",
+              "b) 9.099/1995",
+              "c) 11.340/2006",
+              "d) 7.210/1984",
+            ],
+            correta: "c",
+            explicacao:
+              "A Lei nº 11.340/06 (Lei Maria da Penha) combate a violência doméstica e familiar contra a mulher.",
+          },
+          {
+            enunciado: "A Lei nº 11.343/2006 é conhecida como:",
+            opcoes: [
+              "a) Lei do Desarmamento",
+              "b) Lei de Drogas",
+              "c) Lei Antiterrorismo",
+              "d) Lei de Crimes Ambientais",
+            ],
+            correta: "b",
+            explicacao:
+              "A Lei nº 11.343/2006 institui o Sistema Nacional de Políticas Públicas sobre Drogas.",
+          },
+          {
+            enunciado: "O livramento condicional está previsto em qual lei?",
+            opcoes: [
+              "a) Código Penal",
+              "b) LEP - Lei nº 7.210/1984",
+              "c) Lei Anticorrupção",
+              "d) Lei Maria da Penha",
+            ],
+            correta: "b",
+            explicacao:
+              "O livramento condicional é regulamentado na Lei de Execução Penal (LEP).",
+          },
+          {
+            enunciado: "Qual lei trata da lavagem de dinheiro?",
+            opcoes: [
+              "a) Lei nº 9.613/1998",
+              "b) Lei nº 9.605/1998",
+              "c) Lei nº 10.826/2003",
+              "d) Lei nº 8.072/1990",
+            ],
+            correta: "a",
+            explicacao:
+              "A Lei nº 9.613/98 dispõe sobre os crimes de lavagem de dinheiro.",
+          },
+          {
+            enunciado: "A Lei de Crimes Ambientais é a de nº:",
+            opcoes: [
+              "a) 9.605/1998",
+              "b) 9.099/1995",
+              "c) 11.340/2006",
+              "d) 7.210/1984",
+            ],
+            correta: "a",
+            explicacao: "A Lei nº 9.605/98 trata dos crimes ambientais.",
+          },
+          {
+            enunciado:
+              "A progressão de regime na Lei de Crimes Hediondos exige cumprimento de quanto da pena (para primários)?",
+            opcoes: ["a) 1/2", "b) 1/6", "c) 2/5", "d) 3/5"],
+            correta: "c",
+            explicacao:
+              "Para réus primários condenados por crime hediondo, exige-se 2/5 da pena (Lei nº 8.072/90, art. 2º, §2º).",
+          },
+          {
+            enunciado: "A Lei do Desarmamento é a de nº:",
+            opcoes: [
+              "a) 10.826/2003",
+              "b) 11.340/2006",
+              "c) 9.605/1998",
+              "d) 12.850/2013",
+            ],
+            correta: "a",
+            explicacao:
+              "A Lei nº 10.826/2003 é conhecida como Estatuto do Desarmamento.",
+          },
+          {
+            enunciado: "A Lei nº 12.850/2013 trata de:",
+            opcoes: [
+              "a) Organização criminosa",
+              "b) Crimes eleitorais",
+              "c) Crimes ambientais",
+              "d) Crimes de trânsito",
+            ],
+            correta: "a",
+            explicacao:
+              "A Lei nº 12.850/13 define organização criminosa e meios de investigação.",
+          },
+          {
+            enunciado:
+              "Qual lei regula os Juizados Especiais Cíveis e Criminais?",
+            opcoes: [
+              "a) Lei nº 9.099/1995",
+              "b) Lei nº 7.210/1984",
+              "c) Lei nº 8.072/1990",
+              "d) Lei nº 9.613/1998",
+            ],
+            correta: "a",
+            explicacao:
+              "A Lei nº 9.099/95 regula os Juizados Especiais Cíveis e Criminais.",
+          },
+          {
+            enunciado:
+              "O crime de feminicídio foi incluído no Código Penal pela:",
+            opcoes: [
+              "a) Lei nº 13.104/2015",
+              "b) Lei nº 11.343/2006",
+              "c) Lei nº 12.850/2013",
+              "d) Lei nº 10.826/2003",
+            ],
+            correta: "a",
+            explicacao:
+              "A Lei nº 13.104/15 incluiu o feminicídio no rol dos homicídios qualificados.",
+          },
+          {
+            enunciado: "A tortura praticada por agente público pode gerar:",
+            opcoes: [
+              "a) Perda do cargo público",
+              "b) Aposentadoria compulsória",
+              "c) Apenas multa",
+              "d) Pena de advertência",
+            ],
+            correta: "a",
+            explicacao:
+              "A Lei nº 9.455/97 prevê perda do cargo, função ou emprego público para quem pratica tortura.",
+          },
+          {
+            enunciado: "A Lei de Drogas prevê que a pena de tráfico é:",
+            opcoes: [
+              "a) Reclusão de 1 a 3 anos",
+              "b) Reclusão de 5 a 15 anos",
+              "c) Reclusão de 10 a 20 anos",
+              "d) Detenção de 6 meses a 2 anos",
+            ],
+            correta: "b",
+            explicacao:
+              "Art. 33, Lei nº 11.343/2006: tráfico de drogas = reclusão de 5 a 15 anos.",
+          },
+          {
+            enunciado: "Qual lei trata do crime de terrorismo?",
+            opcoes: [
+              "a) Lei nº 13.260/2016",
+              "b) Lei nº 12.850/2013",
+              "c) Lei nº 9.455/1997",
+              "d) Lei nº 9.605/1998",
+            ],
+            correta: "a",
+            explicacao:
+              "A Lei nº 13.260/2016 define o crime de terrorismo no Brasil.",
+          },
+          {
+            enunciado:
+              "A Lei nº 9.099/95 estabelece a aplicação dos princípios da:",
+            opcoes: [
+              "a) Oralidade, simplicidade, informalidade, economia processual e celeridade",
+              "b) Duração razoável do processo apenas",
+              "c) Publicidade e moralidade",
+              "d) Obrigatoriedade da defesa técnica",
+            ],
+            correta: "a",
+            explicacao:
+              "A Lei nº 9.099/95 traz esses princípios para os Juizados Especiais.",
+          },
+          {
+            enunciado:
+              "Qual é a pena para o crime de organização criminosa (Lei nº 12.850/2013)?",
+            opcoes: [
+              "a) Reclusão de 1 a 3 anos",
+              "b) Reclusão de 3 a 8 anos",
+              "c) Reclusão de 5 a 15 anos",
+              "d) Reclusão de 10 a 20 anos",
+            ],
+            correta: "b",
+            explicacao:
+              "A pena para organização criminosa é de reclusão de 3 a 8 anos e multa.",
+          },
+          {
+            enunciado: "A Lei nº 8.072/90 equipara a crimes hediondos:",
+            opcoes: [
+              "a) Tortura, tráfico ilícito de drogas e terrorismo",
+              "b) Crimes eleitorais",
+              "c) Crimes ambientais",
+              "d) Crimes culposos",
+            ],
+            correta: "a",
+            explicacao:
+              "A Lei nº 8.072/90 equipara tortura, tráfico de drogas e terrorismo a crimes hediondos.",
+          },
+        ],
+        logica: [
+          {
+            enunciado:
+              "Se 'Todos os policiais são servidores públicos' e 'Alguns servidores públicos são médicos', então:",
+            opcoes: [
+              "a) Todos os policiais são médicos",
+              "b) Alguns policiais podem ser médicos",
+              "c) Nenhum policial pode ser médico",
+              "d) Todos os médicos são policiais",
+            ],
+            correta: "b",
+            explicacao:
+              "Da premissa não decorre obrigatoriamente a relação entre policiais e médicos, mas admite-se que alguns possam ser médicos.",
+          },
+          {
+            enunciado: "A negação da proposição 'Todos os alunos estudam' é:",
+            opcoes: [
+              "a) Nenhum aluno estuda",
+              "b) Alguns alunos estudam",
+              "c) Pelo menos um aluno não estuda",
+              "d) Todos estudam pouco",
+            ],
+            correta: "c",
+            explicacao:
+              "Negar 'Todos A são B' é afirmar 'Pelo menos um A não é B'.",
+          },
+          {
+            enunciado:
+              "Considere a proposição: 'Se João é policial, então Maria é professora'. Se João não é policial, pode-se concluir que:",
+            opcoes: [
+              "a) Maria é professora",
+              "b) Maria não é professora",
+              "c) A proposição continua verdadeira",
+              "d) A proposição é falsa",
+            ],
+            correta: "c",
+            explicacao:
+              "Na condicional, quando a hipótese é falsa, a proposição é verdadeira por definição lógica.",
+          },
+          {
+            enunciado:
+              "A tabela-verdade da disjunção (p ∨ q) é falsa apenas quando:",
+            opcoes: [
+              "a) p é verdadeiro e q é falso",
+              "b) p é falso e q é verdadeiro",
+              "c) p e q são verdadeiros",
+              "d) p e q são falsos",
+            ],
+            correta: "d",
+            explicacao:
+              "Na disjunção inclusiva, só é falsa se ambos os valores forem falsos.",
+          },
+          {
+            enunciado: "A negação de 'Maria é policial ou João é médico' é:",
+            opcoes: [
+              "a) Maria é policial e João é médico",
+              "b) Maria não é policial ou João não é médico",
+              "c) Maria não é policial e João não é médico",
+              "d) Nenhuma das alternativas",
+            ],
+            correta: "c",
+            explicacao: "¬(p ∨ q) é logicamente equivalente a (¬p ∧ ¬q).",
+          },
+          {
+            enunciado:
+              "Qual é a equivalência lógica da proposição 'Se chover, então levo guarda-chuva'?",
+            opcoes: [
+              "a) Se não chover, não levo guarda-chuva",
+              "b) Ou não chover, ou levo guarda-chuva",
+              "c) Sempre levo guarda-chuva",
+              "d) Se levo guarda-chuva, então choveu",
+            ],
+            correta: "b",
+            explicacao: "p → q é equivalente a ¬p ∨ q.",
+          },
+          {
+            enunciado:
+              "Qual é a forma lógica da proposição 'João é policial e Maria é advogada'?",
+            opcoes: ["a) p ∨ q", "b) p → q", "c) p ∧ q", "d) ¬p ∨ q"],
+            correta: "c",
+            explicacao:
+              "A proposição composta por 'e' representa a conjunção (p ∧ q).",
+          },
+          {
+            enunciado:
+              "A negação da proposição 'Algum servidor é professor' é:",
+            opcoes: [
+              "a) Nenhum servidor é professor",
+              "b) Todo servidor é professor",
+              "c) Nenhum professor é servidor",
+              "d) Todo professor é servidor",
+            ],
+            correta: "a",
+            explicacao: "Negar 'Algum A é B' resulta em 'Nenhum A é B'.",
+          },
+          {
+            enunciado:
+              "O raciocínio: 'Todos os homens são mortais. Sócrates é homem. Logo, Sócrates é mortal.' é exemplo de:",
+            opcoes: [
+              "a) Indução",
+              "b) Falácia",
+              "c) Silogismo dedutivo",
+              "d) Argumento inválido",
+            ],
+            correta: "c",
+            explicacao:
+              "Esse é o clássico exemplo de silogismo categórico válido (dedução).",
+          },
+          {
+            enunciado:
+              "Se a proposição 'Hoje é segunda-feira' é falsa, então sua negação é:",
+            opcoes: [
+              "a) Hoje é sábado",
+              "b) Hoje não é segunda-feira",
+              "c) Amanhã será terça-feira",
+              "d) Nenhuma das anteriores",
+            ],
+            correta: "b",
+            explicacao:
+              "Negar uma proposição simples é afirmar o contrário: ¬p.",
+          },
+          {
+            enunciado:
+              "Na lógica, a proposição 'ou...ou...' (ou exclusivo) é verdadeira quando:",
+            opcoes: [
+              "a) Apenas uma das proposições é verdadeira",
+              "b) Ambas são verdadeiras",
+              "c) Ambas são falsas",
+              "d) Sempre verdadeira",
+            ],
+            correta: "a",
+            explicacao:
+              "Na disjunção exclusiva (XOR), só é verdadeira quando exatamente uma é verdadeira.",
+          },
+          {
+            enunciado:
+              "A proposição 'Se Pedro estuda, então será aprovado' será falsa apenas quando:",
+            opcoes: [
+              "a) Pedro não estuda e é aprovado",
+              "b) Pedro estuda e não é aprovado",
+              "c) Pedro não estuda e não é aprovado",
+              "d) Pedro estuda e é aprovado",
+            ],
+            correta: "b",
+            explicacao:
+              "Na condicional, é falsa apenas quando p é verdadeiro e q é falso.",
+          },
+          {
+            enunciado:
+              "O que significa dizer que duas proposições são logicamente equivalentes?",
+            opcoes: [
+              "a) São idênticas em conteúdo",
+              "b) Têm a mesma tabela-verdade",
+              "c) Sempre são verdadeiras",
+              "d) São opostas",
+            ],
+            correta: "b",
+            explicacao:
+              "Duas proposições são equivalentes quando apresentam a mesma tabela-verdade.",
+          },
+          {
+            enunciado:
+              "Se 'Todos os detentos estudam' e 'João é detento', então:",
+            opcoes: [
+              "a) João pode não estudar",
+              "b) João estuda",
+              "c) João não estuda",
+              "d) Não é possível concluir nada",
+            ],
+            correta: "b",
+            explicacao:
+              "Da premissa universal decorre que todo elemento da classe satisfaz a propriedade.",
+          },
+          {
+            enunciado:
+              "A negação da proposição 'Nenhum policial é advogado' é:",
+            opcoes: [
+              "a) Todos os policiais são advogados",
+              "b) Alguns policiais são advogados",
+              "c) Alguns advogados não são policiais",
+              "d) Nenhuma das alternativas",
+            ],
+            correta: "b",
+            explicacao: "Negar 'Nenhum A é B' resulta em 'Algum A é B'.",
+          },
+          {
+            enunciado: "O princípio da não contradição afirma que:",
+            opcoes: [
+              "a) Uma proposição não pode ser falsa e verdadeira ao mesmo tempo",
+              "b) Toda proposição é verdadeira",
+              "c) Toda proposição é falsa",
+              "d) Uma proposição pode ser verdadeira e falsa simultaneamente",
+            ],
+            correta: "a",
+            explicacao:
+              "O princípio da não contradição é fundamental na lógica clássica.",
+          },
+          {
+            enunciado: "Qual é o valor lógico da proposição '2 + 2 = 4'?",
+            opcoes: [
+              "a) Verdadeiro",
+              "b) Falso",
+              "c) Indeterminado",
+              "d) Depende do contexto",
+            ],
+            correta: "a",
+            explicacao:
+              "2 + 2 = 4 é uma verdade aritmética, portanto sempre verdadeira.",
+          },
+          {
+            enunciado:
+              "Se 'Se Maria trabalha, então ganha salário' e Maria trabalha, então:",
+            opcoes: [
+              "a) Maria não ganha salário",
+              "b) Maria ganha salário",
+              "c) Não se pode concluir",
+              "d) A proposição é falsa",
+            ],
+            correta: "b",
+            explicacao: "Pelo modus ponens: p → q, p, logo q.",
+          },
+          {
+            enunciado:
+              "O raciocínio 'Se chover, não saio. Está chovendo. Logo, não saio.' é exemplo de:",
+            opcoes: [
+              "a) Modus tollens",
+              "b) Modus ponens",
+              "c) Silogismo disjuntivo",
+              "d) Falácia da afirmação do consequente",
+            ],
+            correta: "b",
+            explicacao:
+              "Modus ponens: se p → q, e p é verdadeiro, então q é verdadeiro.",
+          },
+          {
+            enunciado:
+              "A proposição 'Se estudo, então passo. Não passo. Logo, não estudei.' é exemplo de:",
+            opcoes: [
+              "a) Modus tollens",
+              "b) Modus ponens",
+              "c) Falácia",
+              "d) Silogismo disjuntivo",
+            ],
+            correta: "a",
+            explicacao: "Modus tollens: p → q, ¬q, logo ¬p.",
+          },
+        ],
+      };
+
+      let disciplinaAtual = "";
+      let indice = 0;
+      let acertos = 0,
+        erros = 0;
+      let respondida = false;
+
+      function iniciar() {
+        let nome = document.getElementById("nome").value;
+        if (nome.trim() === "") {
+          alert("Digite seu nome!");
+          return;
+        }
+        document.getElementById("login").style.display = "none";
+        document.getElementById("menu").style.display = "block";
+        document.querySelector("header").innerHTML += " | Aluno: " + nome;
+      }
+
+      function abrirDisciplina(disc) {
+        disciplinaAtual = disc;
+        indice = 0;
+        acertos = 0;
+        erros = 0;
+        document.getElementById("menu").style.display = "none";
+        document.getElementById("quiz").style.display = "block";
+        carregarQuestao();
+      }
+
+      function carregarQuestao() {
+        let box = document.getElementById("questao-box");
+        let q = questoes[disciplinaAtual][indice];
+        let html = `<div class='quiz-box'><h3>Questão ${indice + 1}: ${
+          q.enunciado
+        }</h3>`;
+        q.opcoes.forEach((op) => {
+          html += `<div class='opcao' onclick="responder(this,'${op.charAt(
+            0
+          )}')">${op}</div>`;
+        });
+        html += `</div><div id="explicacao" class="explicacao" style="display:none;"></div>`;
+        box.innerHTML = html;
+        respondida = false;
+        atualizarPlacar();
+      }
+
+      function responder(elemento, resposta) {
+        if (respondida) return;
+        respondida = true;
+        let q = questoes[disciplinaAtual][indice];
+        let explicacaoBox = document.getElementById("explicacao");
+
+        if (resposta === q.correta) {
+          acertos++;
+          elemento.classList.add("correta");
+          explicacaoBox.innerHTML = `✅ <strong>Você acertou!</strong><br>${q.explicacao}<br><em>Bom domínio da matéria!</em>`;
+        } else {
+          erros++;
+          elemento.classList.add("incorreta");
+          document.querySelectorAll(".opcao").forEach((op) => {
+            if (op.innerText.charAt(0) === q.correta) {
+              op.classList.add("correta");
+            }
+          });
+          explicacaoBox.innerHTML = `❌ <strong>Você errou!</strong><br>${q.explicacao}<br><em>Reforce seus estudos nesse tema!</em>`;
+        }
+        explicacaoBox.style.display = "block";
+        atualizarPlacar();
+      }
+
+      function proxima() {
+        if (indice < questoes[disciplinaAtual].length - 1) {
+          indice++;
+          carregarQuestao();
+        } else {
+          alert("Fim das questões!");
+        }
+      }
+      function anterior() {
+        if (indice > 0) {
+          indice--;
+          carregarQuestao();
+        }
+      }
+      function mostrarDica() {
+        alert("💡 Pense bem! Leia o enunciado com atenção.");
+      }
+      function voltarMenu() {
+        document.getElementById("quiz").style.display = "none";
+        document.getElementById("menu").style.display = "block";
+      }
+      function finalizar() {
+        alert(`Resultado final: ✅ ${acertos} acertos | ❌ ${erros} erros`);
+        function finalizarDetalhado() {
+          let total = questoes[disciplinaAtual].length;
+          let percentual = ((acertos / total) * 100).toFixed(1);
+
+          let nivel = "";
+          if (percentual >= 80) {
+            nivel = "Excelente 🚀";
+          } else if (percentual >= 60) {
+            nivel = "Bom 👍";
+          } else if (percentual >= 40) {
+            nivel = "Regular ⚠️";
+          } else {
+            nivel = "Fraco ❌";
+          }
+
+          // Sugestão de reforço
+          let sugestao = "";
+          switch (disciplinaAtual) {
+            case "portugues":
+              sugestao =
+                "Revise interpretação de texto, funções da linguagem e análise sintática.";
+              break;
+            case "informatica":
+              sugestao =
+                "Reforce segurança digital, sistemas operacionais e pacote Office.";
+              break;
+            case "penal":
+              sugestao =
+                "Revise princípios penais, crimes contra a vida e administração pública.";
+              break;
+            case "constitucional":
+              sugestao =
+                "Reforce separação dos poderes, cláusulas pétreas e controle de constitucionalidade.";
+              break;
+            case "humanos":
+              sugestao =
+                "Revise tratados internacionais e princípios como universalidade e indivisibilidade.";
+              break;
+            case "legislacao":
+              sugestao =
+                "Reforce LEP, Lei de Drogas, Crimes Hediondos e Lei Maria da Penha.";
+              break;
+            case "logica":
+              sugestao =
+                "Reforce tabelas-verdade, negação, equivalência e argumentação lógica.";
+              break;
+          }
+
+          // Mostra resultado direto na tela (sem criar DIV extra)
+          document.getElementById("questao-box").innerHTML = `
+    <div style="background:#fff; padding:20px; border-radius:10px; box-shadow:0 4px 12px rgba(0,0,0,0.2); text-align:center;">
+      <h2 style="color:#1e3c72;">📊 Resultado Final</h2>
+      <p>✅ <b>${acertos}</b> acertos | ❌ <b>${erros}</b> erros</p>
+      <p>📈 Percentual: <b>${percentual}%</b></p>
+      <p>🔎 Desempenho: <b>${nivel}</b></p>
+      <div style="background:#f8f9fa; border-left:5px solid #17a2b8; padding:10px; border-radius:6px; margin-top:15px;">
+        💡 <b>Sugestão de estudo:</b> ${sugestao}
+      </div>
+      <br>
+      <button class="btn-menu" onclick="voltarMenu()">🔙 Voltar ao Menu</button>
+    </div>
+  `;
+
+          // esconde botões de navegação
+          document.querySelector(".nav-buttons").style.display = "none";
+        }
+      }
+      function atualizarPlacar() {
+        document.getElementById(
+          "placar"
+        ).innerHTML = `✅ Acertos: ${acertos} | ❌ Erros: ${erros}`;
+      }
+    </script>
+  </body>
+</html>

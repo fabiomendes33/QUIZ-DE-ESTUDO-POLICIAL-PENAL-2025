@@ -1,0 +1,101 @@
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background: #f4f6f9;
+  margin: 0;
+  padding: 20px;
+  color: #333;
+}
+
+h1, h2 {
+  color: #222;
+}
+
+input {
+  padding: 10px;
+  width: 220px;
+  border-radius: 6px;
+  border: 1px solid #aaa;
+}
+
+button {
+  padding: 12px 20px;
+  margin: 8px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+button:hover {
+  transform: scale(1.08);
+  opacity: 0.9;
+}
+
+/* botão de disciplina */
+.btn.portugues { background-color: #007bff; color: #fff; }
+
+/* área do quiz */
+#quiz {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  max-width: 700px;
+  margin: 20px auto;
+}
+
+#opcoes button {
+  display: block;
+  width: 80%;
+  margin: 10px auto;
+  border-radius: 6px;
+}
+
+/* feedback */
+.correta {
+  background-color: #28a745 !important;
+  color: #fff;
+  animation: flashGreen 0.6s;
+}
+
+.errada {
+  background-color: #dc3545 !important;
+  color: #fff;
+  animation: flashRed 0.6s;
+}
+
+@keyframes flashGreen {
+  from { background-color: #fff; }
+  to { background-color: #28a745; }
+}
+
+@keyframes flashRed {
+  from { background-color: #fff; }
+  to { background-color: #dc3545; }
+}
+
+/* barra de progresso */
+.progresso {
+  width: 100%;
+  background: #ddd;
+  height: 12px;
+  border-radius: 6px;
+  margin-top: 15px;
+}
+
+#barra-progresso {
+  height: 100%;
+  width: 0%;
+  background: #007bff;
+  border-radius: 6px;
+  transition: width 0.4s ease;
+}
+
+#explicacao {
+  margin-top: 15px;
+  font-style: italic;
+  color: #555;
+}
