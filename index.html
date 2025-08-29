@@ -249,6 +249,23 @@
       .btn-resumo:hover {
         transform: scale(1.05);
         background: #e84118;
+
+        .resumo-disciplina {
+          padding: 25px;
+          max-width: 900px;
+          margin: 20px auto;
+          background: #fff;
+          border-radius: 10px;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+          font-size: 16px;
+          line-height: 1.6;
+          color: #222;
+        }
+        .resumo-disciplina h2 {
+          text-align: center;
+          margin-bottom: 20px;
+          color: #1e3c72;
+        }
       }
     </style>
   </head>
@@ -325,6 +342,166 @@
         <button class="btn-menu" onclick="voltarMenuResumo()">
           🔙 Voltar ao Menu
         </button>
+
+        <!-- ================= RESUMOS INDIVIDUAIS ================= -->
+        <div
+          id="resumo-portugues"
+          class="resumo-disciplina"
+          style="display: none"
+        >
+          <h2>📘 Resumo Português</h2>
+          <p>
+            <span style="color: #28a745">✔ Interpretação de textos</span>: foco
+            em inferências, ideias implícitas e coesão textual.
+          </p>
+          <p>
+            <span style="color: #dc3545">⚡ Funções da linguagem</span>:
+            destaque para <b>referencial</b>, <b>apelativa</b> e
+            <b>metalinguística</b>.
+          </p>
+          <p>
+            <span style="color: #007bff">✎ Gramática</span>: regência
+            verbal/nominal, crase, concordância nominal e verbal.
+          </p>
+          <p>
+            <span style="color: #fd7e14">✨ Figuras de linguagem</span>:
+            metáfora, metonímia, antítese, paradoxo e ironia.
+          </p>
+          <button class="btn-menu" onclick="voltarMenu()">
+            🔙 Voltar ao Menu
+          </button>
+        </div>
+
+        <div
+          id="resumo-informatica"
+          class="resumo-disciplina"
+          style="display: none"
+        >
+          <h2>💻 Resumo Informática</h2>
+          <p>
+            <span style="color: #28a745">✔ Pacote Office</span>: funções
+            principais do Word, Excel (fórmulas) e PowerPoint.
+          </p>
+          <p>
+            <span style="color: #dc3545">⚡ Segurança</span>: phishing, malware,
+            senhas fortes, autenticação em 2 fatores.
+          </p>
+          <p>
+            <span style="color: #007bff">✎ Redes</span>: protocolos (TCP/IP),
+            navegadores, armazenamento em nuvem.
+          </p>
+          <button class="btn-menu" onclick="voltarMenu()">
+            🔙 Voltar ao Menu
+          </button>
+        </div>
+
+        <div
+          id="resumo-informatica"
+          class="resumo-disciplina"
+          style="display: none"
+        >
+          <h2>💻 Resumo Informática</h2>
+          <p>
+            <span style="color: #28a745">✔ Pacote Office</span>: funções
+            principais do Word, Excel (fórmulas) e PowerPoint.
+          </p>
+          <p>
+            <span style="color: #dc3545">⚡ Segurança</span>: phishing, malware,
+            senhas fortes, autenticação em 2 fatores.
+          </p>
+          <p>
+            <span style="color: #007bff">✎ Redes</span>: protocolos (TCP/IP),
+            navegadores, armazenamento em nuvem.
+          </p>
+          <button class="btn-menu" onclick="voltarMenu()">
+            🔙 Voltar ao Menu
+          </button>
+        </div>
+
+        <div id="resumo-penal" class="resumo-disciplina" style="display: none">
+          <h2>⚖️ Resumo Direito Penal</h2>
+          <p>
+            <span style="color: #28a745">✔ Princípios básicos</span>:
+            legalidade, anterioridade, intervenção mínima.
+          </p>
+          <p>
+            <span style="color: #dc3545">⚡ Crimes contra a pessoa</span>:
+            homicídio, lesão corporal, crimes contra honra.
+          </p>
+          <p>
+            <span style="color: #007bff"
+              >✎ Crimes contra a administração pública</span
+            >: peculato, corrupção, concussão.
+          </p>
+          <button class="btn-menu" onclick="voltarMenu()">
+            🔙 Voltar ao Menu
+          </button>
+        </div>
+
+        <div
+          id="resumo-humanos"
+          class="resumo-disciplina"
+          style="display: none"
+        >
+          <h2>🌍 Resumo Direitos Humanos</h2>
+          <p>
+            <span style="color: #28a745">✔ ONU</span>: Declaração Universal,
+            tratados internacionais.
+          </p>
+          <p>
+            <span style="color: #dc3545">⚡ Sistema Interamericano</span>: Corte
+            e Comissão de Direitos Humanos.
+          </p>
+          <p>
+            <span style="color: #007bff">✎ Proteção da dignidade humana</span>
+            como valor supremo.
+          </p>
+          <button class="btn-menu" onclick="voltarMenu()">
+            🔙 Voltar ao Menu
+          </button>
+        </div>
+
+        <div
+          id="resumo-humanos"
+          class="resumo-disciplina"
+          style="display: none"
+        >
+          <h2>🌍 Resumo Direitos Humanos</h2>
+          <p>
+            <span style="color: #28a745">✔ ONU</span>: Declaração Universal,
+            tratados internacionais.
+          </p>
+          <p>
+            <span style="color: #dc3545">⚡ Sistema Interamericano</span>: Corte
+            e Comissão de Direitos Humanos.
+          </p>
+          <p>
+            <span style="color: #007bff">✎ Proteção da dignidade humana</span>
+            como valor supremo.
+          </p>
+          <button class="btn-menu" onclick="voltarMenu()">
+            🔙 Voltar ao Menu
+          </button>
+        </div>
+
+        <div id="resumo-logica" class="resumo-disciplina" style="display: none">
+          <h2>🧮 Resumo Raciocínio Lógico</h2>
+          <p>
+            <span style="color: #28a745">✔ Proposições</span>, tabelas-verdade,
+            conectivos.
+          </p>
+          <p>
+            <span style="color: #dc3545">⚡ Equivalências lógicas</span>,
+            negações, silogismos.
+          </p>
+          <p>
+            <span style="color: #007bff">✎ Questões numéricas</span>: sequências
+            e problemas matemáticos aplicados.
+          </p>
+          <button class="btn-menu" onclick="voltarMenu()">
+            🔙 Voltar ao Menu
+          </button>
+        </div>
       </div>
     </div>
 
