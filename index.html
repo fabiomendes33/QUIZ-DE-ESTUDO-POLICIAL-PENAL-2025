@@ -235,6 +235,21 @@
         background: #6c757d;
         color: #fff;
       }
+      .btn-resumo {
+        background: #ff5733; /* laranja chamativo */
+        color: #fff;
+        font-weight: bold;
+        border-radius: 10px;
+        padding: 15px;
+        margin: 10px 0;
+        cursor: pointer;
+        transition: 0.3s;
+        width: 250px;
+      }
+      .btn-resumo:hover {
+        transform: scale(1.05);
+        background: #e84118;
+      }
     </style>
   </head>
   <body>
@@ -246,6 +261,71 @@
       <p>Digite seu nome para começar:</p>
       <input type="text" id="nome" placeholder="Seu nome..." />
       <button onclick="iniciar()">Entrar</button>
+    </div>
+
+    <!-- RESUMO -->
+    <div
+      id="resumo"
+      style="
+        display: none;
+        padding: 20px;
+        max-width: 900px;
+        margin: auto;
+        color: #fff; /* <-- texto branco visível */
+        background: rgba(30, 60, 114, 0.95); /* fundo sutil */
+        border-radius: 10px;
+      "
+    >
+      <h2
+        style="
+          text-align: center;
+          color: #ffeb3b;
+          text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+        "
+      >
+        📘 Resumo Geral PPMG 2025
+      </h2>
+      <p>
+        <strong>Português:</strong> interpretação de textos, funções da
+        linguagem, figuras de linguagem, ortografia oficial, regência verbal e
+        nominal, crase, concordância, colocação pronominal.
+      </p>
+      <p>
+        <strong>Informática:</strong> conceitos de sistemas operacionais,
+        pacotes Office, redes de computadores, segurança da informação,
+        navegação na internet e armazenamento em nuvem.
+      </p>
+      <p>
+        <strong>Direito Penal:</strong> princípios básicos, crimes contra a
+        pessoa, crimes contra o patrimônio, crimes contra a administração
+        pública, aplicação da lei penal no tempo e no espaço.
+      </p>
+      <p>
+        <strong>Direito Constitucional:</strong> direitos fundamentais,
+        organização dos poderes, controle de constitucionalidade, garantias
+        constitucionais, administração pública.
+      </p>
+      <p>
+        <strong>Direitos Humanos:</strong> tratados internacionais, direitos
+        fundamentais, convenções da ONU, proteção da dignidade da pessoa humana,
+        sistema interamericano.
+      </p>
+      <p>
+        <strong>Legislação Especial:</strong> LEP (Lei de Execução Penal), Lei
+        de Drogas, Estatuto da Criança e Adolescente, Estatuto do Desarmamento,
+        Lei Maria da Penha.
+      </p>
+      <p>
+        <strong>Raciocínio Lógico:</strong> proposições, tabelas-verdade,
+        equivalências lógicas, diagramas lógicos, sequências numéricas e
+        problemas matemáticos aplicados.
+      </p>
+
+      <div style="text-align: center; margin-top: 20px">
+        <button class="btn-menu" onclick="voltarMenuResumo()">
+          🔙 Voltar ao Menu
+        </button>
+      </div>
     </div>
 
     <!-- MENU DE DISCIPLINAS -->
@@ -274,6 +354,9 @@
       </button>
       <button class="btn-logica" onclick="abrirDisciplina('logica')">
         🧮 Raciocínio Lógico
+      </button>
+      <button class="btn-resumo" onclick="abrirResumo()">
+        📘 Edital Geral PPMG 2025
       </button>
     </div>
 
@@ -3977,6 +4060,357 @@
               "A Lei nº 8.072/90 equipara tortura, tráfico de drogas e terrorismo a crimes hediondos.",
           },
         ],
+
+        legislacao: [
+          {
+            enunciado:
+              "Segundo a Lei de Execução Penal (Lei 7.210/84), a pena deve ser executada de forma a:",
+            opcoes: [
+              "a) Privilegiar apenas o caráter retributivo",
+              "b) Ressocializar o condenado",
+              "c) Garantir vingança social",
+              "d) Sempre em regime fechado",
+            ],
+            correta: "b",
+            explicacao:
+              "Art. 1º, LEP: execução penal tem por objetivo efetivar a sentença e proporcionar condições para a harmônica integração social.",
+          },
+          {
+            enunciado: "A progressão de regime depende:",
+            opcoes: [
+              "a) Apenas do bom comportamento",
+              "b) Do cumprimento de parte da pena e bom comportamento",
+              "c) Da confissão do réu",
+              "d) Exclusivamente da decisão da vítima",
+            ],
+            correta: "b",
+            explicacao:
+              "Art. 112, LEP: progressão exige cumprimento de fração da pena e bom comportamento carcerário.",
+          },
+          {
+            enunciado:
+              "Segundo a Lei de Drogas (Lei 11.343/06), o tráfico ilícito de entorpecentes é considerado:",
+            opcoes: [
+              "a) Crime de menor potencial ofensivo",
+              "b) Crime hediondo",
+              "c) Crime culposo",
+              "d) Crime contra a honra",
+            ],
+            correta: "b",
+            explicacao:
+              "Art. 5º, XLIII, CF/88 e Lei 8.072/90: tráfico é crime equiparado a hediondo.",
+          },
+          {
+            enunciado: "De acordo com a LEP, o trabalho do preso:",
+            opcoes: [
+              "a) É facultativo",
+              "b) É obrigatório para condenados com sentença transitada em julgado",
+              "c) É proibido em regime fechado",
+              "d) Só ocorre em regime semiaberto",
+            ],
+            correta: "b",
+            explicacao:
+              "Art. 31, LEP: o trabalho do preso é dever social e condição de dignidade humana.",
+          },
+          {
+            enunciado:
+              "O regime inicial de cumprimento de pena para condenados por crimes hediondos é:",
+            opcoes: [
+              "a) Aberto",
+              "b) Semiaberto",
+              "c) Fechado",
+              "d) Livre escolha do juiz",
+            ],
+            correta: "c",
+            explicacao: "Lei 8.072/90, art. 2º, §1º: regime inicial fechado.",
+          },
+          {
+            enunciado: "O livramento condicional pode ser concedido após:",
+            opcoes: [
+              "a) Cumprimento de 1/3 da pena",
+              "b) Cumprimento de parte da pena + bom comportamento + requisitos legais",
+              "c) Apenas com confissão",
+              "d) Cumprimento integral da pena",
+            ],
+            correta: "b",
+            explicacao:
+              "Art. 83, CP: requisitos objetivos e subjetivos devem ser preenchidos.",
+          },
+          {
+            enunciado:
+              "A Lei Maria da Penha (Lei 11.340/06) tem como objetivo:",
+            opcoes: [
+              "a) Combater crimes patrimoniais",
+              "b) Proteger a mulher da violência doméstica e familiar",
+              "c) Regulamentar armas de fogo",
+              "d) Combater o tráfico internacional",
+            ],
+            correta: "b",
+            explicacao:
+              "Lei Maria da Penha: proteção da mulher em situação de violência doméstica.",
+          },
+          {
+            enunciado: "O Estatuto do Desarmamento (Lei 10.826/03) regula:",
+            opcoes: [
+              "a) Apenas crimes hediondos",
+              "b) Posse, porte e comercialização de armas de fogo",
+              "c) Apenas crimes militares",
+              "d) Crimes eleitorais",
+            ],
+            correta: "b",
+            explicacao:
+              "Art. 1º: dispõe sobre registro, posse e comercialização de armas de fogo e munição.",
+          },
+          {
+            enunciado:
+              "Na LEP, a assistência ao preso compreende, entre outros:",
+            opcoes: [
+              "a) Apenas assistência material",
+              "b) Assistência material, à saúde, jurídica, educacional, social e religiosa",
+              "c) Apenas assistência jurídica",
+              "d) Apenas assistência médica",
+            ],
+            correta: "b",
+            explicacao:
+              "Art. 10, LEP: assistência é material, à saúde, jurídica, educacional, social e religiosa.",
+          },
+          {
+            enunciado: "O crime de tortura (Lei 9.455/97) é considerado:",
+            opcoes: [
+              "a) Imprescritível",
+              "b) Inafiançável e insuscetível de graça ou anistia",
+              "c) Apenas crime comum",
+              "d) Crime de menor potencial ofensivo",
+            ],
+            correta: "b",
+            explicacao:
+              "Art. 5º, XLIII, CF/88: tortura é inafiançável e insuscetível de graça ou anistia.",
+          },
+          {
+            enunciado: "Segundo a LEP, o exame criminológico:",
+            opcoes: [
+              "a) É obrigatório em todos os casos",
+              "b) Pode ser determinado pelo juiz para avaliar progressão",
+              "c) É proibido",
+              "d) É competência exclusiva do Ministério Público",
+            ],
+            correta: "b",
+            explicacao:
+              "Art. 8º, LEP: exame pode ser determinado para individualização da pena.",
+          },
+          {
+            enunciado:
+              "No Estatuto da Criança e do Adolescente, a internação é medida aplicada:",
+            opcoes: [
+              "a) Apenas a crianças",
+              "b) Apenas a adolescentes em ato infracional",
+              "c) Em qualquer crime cometido por menor",
+              "d) Sempre com prazo indeterminado",
+            ],
+            correta: "b",
+            explicacao:
+              "Art. 121, ECA: medida de internação só a adolescentes autores de ato infracional.",
+          },
+          {
+            enunciado: "A Lei de Drogas prevê que o usuário de entorpecentes:",
+            opcoes: [
+              "a) Pode ser preso em flagrante com pena de prisão",
+              "b) Sofre apenas penas alternativas como advertência e medidas educativas",
+              "c) É absolvido automaticamente",
+              "d) Responde por crime hediondo",
+            ],
+            correta: "b",
+            explicacao:
+              "Art. 28, Lei 11.343/06: usuário não sofre pena de prisão, mas medidas educativas.",
+          },
+          {
+            enunciado: "O crime de genocídio é:",
+            opcoes: [
+              "a) Prescritível",
+              "b) Imprescritível",
+              "c) Apenas crime militar",
+              "d) Apenas infração administrativa",
+            ],
+            correta: "b",
+            explicacao:
+              "Art. 5º, XLII, CF/88: crime de genocídio é imprescritível e inafiançável.",
+          },
+          {
+            enunciado: "A Lei de Crimes Hediondos (Lei 8.072/90) prevê que:",
+            opcoes: [
+              "a) Todos os crimes nela previstos admitem anistia",
+              "b) São inafiançáveis e insuscetíveis de graça ou indulto",
+              "c) Podem ser perdoados pelo juiz",
+              "d) São considerados culposos",
+            ],
+            correta: "b",
+            explicacao:
+              "Art. 2º, Lei 8.072/90: crimes hediondos são inafiançáveis e insuscetíveis de graça ou indulto.",
+          },
+          {
+            enunciado: "A saída temporária na LEP é permitida para presos em:",
+            opcoes: [
+              "a) Regime fechado",
+              "b) Regime semiaberto",
+              "c) Regime aberto",
+              "d) Prisão domiciliar",
+            ],
+            correta: "b",
+            explicacao:
+              "Art. 122, LEP: saída temporária só em regime semiaberto.",
+          },
+          {
+            enunciado: "O preso provisório tem direito a:",
+            opcoes: [
+              "a) Não trabalhar",
+              "b) Trabalho facultativo e estudo",
+              "c) Trabalho obrigatório",
+              "d) Nenhum direito até a sentença",
+            ],
+            correta: "b",
+            explicacao:
+              "Art. 31, §1º, LEP: trabalho do preso provisório é facultativo.",
+          },
+          {
+            enunciado: "O crime de feminicídio é tipificado como:",
+            opcoes: [
+              "a) Homicídio simples",
+              "b) Homicídio qualificado por razão de gênero",
+              "c) Lesão corporal",
+              "d) Apenas violência doméstica",
+            ],
+            correta: "b",
+            explicacao:
+              "Art. 121, §2º, VI, CP: homicídio qualificado por motivo de condição do sexo feminino.",
+          },
+          {
+            enunciado:
+              "O preso submetido a regime disciplinar diferenciado (RDD) pode ter contato com outros presos?",
+            opcoes: [
+              "a) Livremente",
+              "b) Apenas em atividades coletivas",
+              "c) Não, permanece em cela individual",
+              "d) Apenas em visitas íntimas",
+            ],
+            correta: "c",
+            explicacao:
+              "Art. 52, LEP: RDD implica recolhimento em cela individual.",
+          },
+          {
+            enunciado:
+              "A progressão de regime nos crimes hediondos exige cumprimento de:",
+            opcoes: [
+              "a) 1/6 da pena",
+              "b) 2/5 da pena para primários e 3/5 para reincidentes",
+              "c) Metade da pena",
+              "d) Integralidade da pena",
+            ],
+            correta: "b",
+            explicacao:
+              "Lei 8.072/90, art. 2º, §2º: progressão em 2/5 (primário) e 3/5 (reincidente).",
+          },
+          {
+            enunciado: "A Lei Maria da Penha prevê como medida protetiva:",
+            opcoes: [
+              "a) Prisão automática do agressor",
+              "b) Afastamento do lar e proibição de contato com a vítima",
+              "c) Punição com multa simples",
+              "d) Suspensão de direitos políticos",
+            ],
+            correta: "b",
+            explicacao:
+              "Medidas protetivas incluem afastamento do lar, proibição de contato e aproximação.",
+          },
+          {
+            enunciado:
+              "O crime de posse irregular de arma de fogo é previsto no:",
+            opcoes: [
+              "a) Código Penal",
+              "b) Estatuto do Desarmamento",
+              "c) Lei Maria da Penha",
+              "d) Lei de Drogas",
+            ],
+            correta: "b",
+            explicacao:
+              "Lei 10.826/03 prevê crimes relacionados a armas de fogo.",
+          },
+          {
+            enunciado:
+              "A quem compete a execução da pena privativa de liberdade?",
+            opcoes: [
+              "a) Ministério Público",
+              "b) Poder Judiciário",
+              "c) Administração penitenciária",
+              "d) Polícia Militar",
+            ],
+            correta: "c",
+            explicacao:
+              "A execução material da pena é atribuição da administração penitenciária, sob controle judicial.",
+          },
+          {
+            enunciado:
+              "No sistema penitenciário brasileiro, o exame criminológico:",
+            opcoes: [
+              "a) É proibido",
+              "b) É regra absoluta",
+              "c) Pode ser exigido pelo juiz",
+              "d) É feito apenas no início da pena",
+            ],
+            correta: "c",
+            explicacao:
+              "Art. 8º, LEP: exame pode ser exigido para individualização da execução penal.",
+          },
+          {
+            enunciado: "O crime de associação criminosa é configurado quando:",
+            opcoes: [
+              "a) Duas pessoas se reúnem para praticar crimes",
+              "b) Três ou mais pessoas se associam para cometer crimes",
+              "c) Há um único ato criminoso",
+              "d) Somente em organizações internacionais",
+            ],
+            correta: "b",
+            explicacao:
+              "Art. 288, CP: associação criminosa exige três ou mais pessoas.",
+          },
+          {
+            enunciado: "O crime de lavagem de dinheiro é regulado pela Lei:",
+            opcoes: [
+              "a) 9.455/97",
+              "b) 9.613/98",
+              "c) 10.826/03",
+              "d) 11.343/06",
+            ],
+            correta: "b",
+            explicacao:
+              "Lei 9.613/98 dispõe sobre crimes de lavagem de dinheiro.",
+          },
+          {
+            enunciado:
+              "A Lei de Drogas prevê causa de aumento de pena quando o tráfico ocorre:",
+            opcoes: [
+              "a) Em zonas rurais",
+              "b) Em escolas ou presídios",
+              "c) Em festas privadas",
+              "d) Em zonas comerciais",
+            ],
+            correta: "b",
+            explicacao:
+              "Art. 40, Lei 11.343/06: aumento se o tráfico ocorrer em escolas, presídios, transportes públicos.",
+          },
+          {
+            enunciado: "A LEP prevê que o preso tem direito a:",
+            opcoes: [
+              "a) Apenas comida",
+              "b) Alimentação suficiente, vestuário e instalações higiênicas",
+              "c) Apenas assistência médica",
+              "d) Apenas assistência jurídica",
+            ],
+            correta: "b",
+            explicacao:
+              "Art. 12, LEP: direito à alimentação, vestuário e instalações higiênicas adequadas.",
+          },
+        ],
+
         logica: [
           {
             enunciado:
@@ -4224,6 +4658,356 @@
             explicacao: "Modus tollens: p → q, ¬q, logo ¬p.",
           },
         ],
+
+        logica: [
+          {
+            enunciado:
+              "Se João é professor, então Maria é aluna. João é professor. Logo:",
+            opcoes: [
+              "a) Maria é aluna",
+              "b) Maria não é aluna",
+              "c) João não é professor",
+              "d) Não se pode concluir nada",
+            ],
+            correta: "a",
+            explicacao:
+              "P → Q; P é verdadeiro, logo Q é verdadeiro (modus ponens).",
+          },
+          {
+            enunciado:
+              "A negação da proposição 'Todos os alunos são estudiosos' é:",
+            opcoes: [
+              "a) Nenhum aluno é estudioso",
+              "b) Alguns alunos não são estudiosos",
+              "c) Todos são desinteressados",
+              "d) Alguns alunos são estudiosos",
+            ],
+            correta: "b",
+            explicacao: "Negar 'todos' resulta em 'alguns não'.",
+          },
+          {
+            enunciado: "Se 'Hoje é sábado ou domingo' é falso, então:",
+            opcoes: [
+              "a) Hoje é sábado",
+              "b) Hoje é domingo",
+              "c) Hoje não é sábado nem domingo",
+              "d) Hoje é sábado e domingo",
+            ],
+            correta: "c",
+            explicacao:
+              "Uma disjunção (P ∨ Q) é falsa apenas quando P e Q são falsos.",
+          },
+          {
+            enunciado:
+              "Na tabela-verdade, a conjunção (P ∧ Q) é verdadeira quando:",
+            opcoes: [
+              "a) P e Q são verdadeiros",
+              "b) P é falso e Q é verdadeiro",
+              "c) Pelo menos um é verdadeiro",
+              "d) Ambos são falsos",
+            ],
+            correta: "a",
+            explicacao:
+              "Conjunção só é verdadeira quando ambas as proposições são verdadeiras.",
+          },
+          {
+            enunciado:
+              "Se a proposição 'Se chover, então levo guarda-chuva' é verdadeira e choveu, então:",
+            opcoes: [
+              "a) Não levo guarda-chuva",
+              "b) Levo guarda-chuva",
+              "c) Não se pode concluir nada",
+              "d) Está nublado",
+            ],
+            correta: "b",
+            explicacao: "P → Q; P verdadeiro implica Q verdadeiro.",
+          },
+          {
+            enunciado:
+              "A proposição 'Hoje não é segunda-feira' é a negação de:",
+            opcoes: [
+              "a) Hoje é terça-feira",
+              "b) Hoje é segunda-feira",
+              "c) Hoje é domingo",
+              "d) Hoje é sexta-feira",
+            ],
+            correta: "b",
+            explicacao: "Negação simples de 'Hoje é segunda-feira'.",
+          },
+          {
+            enunciado: "Qual é a negação de 'Alguns alunos faltaram à prova'?",
+            opcoes: [
+              "a) Nenhum aluno faltou à prova",
+              "b) Todos os alunos faltaram",
+              "c) Alguns alunos não faltaram",
+              "d) Ninguém fez a prova",
+            ],
+            correta: "a",
+            explicacao: "Negar 'alguns' resulta em 'nenhum'.",
+          },
+          {
+            enunciado: "Uma tautologia é:",
+            opcoes: [
+              "a) Uma proposição sempre falsa",
+              "b) Uma proposição que pode ser verdadeira ou falsa",
+              "c) Uma proposição sempre verdadeira",
+              "d) Uma proposição sem valor lógico",
+            ],
+            correta: "c",
+            explicacao: "Tautologia = proposição sempre verdadeira.",
+          },
+          {
+            enunciado:
+              "Se 'Se estudo, então passo no concurso' é falsa, então:",
+            opcoes: [
+              "a) Estudei e não passei",
+              "b) Não estudei e passei",
+              "c) Estudei e passei",
+              "d) Não estudei e não passei",
+            ],
+            correta: "a",
+            explicacao:
+              "A condicional só é falsa quando P é verdadeiro e Q é falso.",
+          },
+          {
+            enunciado:
+              "Qual é a negação correta de 'Pedro estuda e Maria trabalha'?",
+            opcoes: [
+              "a) Pedro não estuda e Maria não trabalha",
+              "b) Pedro não estuda ou Maria não trabalha",
+              "c) Pedro não estuda e Maria trabalha",
+              "d) Pedro estuda ou Maria não trabalha",
+            ],
+            correta: "b",
+            explicacao: "Negação de (P ∧ Q) = (¬P ∨ ¬Q).",
+          },
+          {
+            enunciado: "O valor lógico de '2 é par ou 3 é par' é:",
+            opcoes: [
+              "a) Verdadeiro",
+              "b) Falso",
+              "c) Indeterminado",
+              "d) Nenhuma",
+            ],
+            correta: "a",
+            explicacao: "2 é par (V), 3 é par (F); disjunção V ∨ F = V.",
+          },
+          {
+            enunciado:
+              "Se apenas uma das alternativas for verdadeira, estamos tratando de:",
+            opcoes: [
+              "a) Conjunção",
+              "b) Disjunção inclusiva",
+              "c) Disjunção exclusiva",
+              "d) Condicional",
+            ],
+            correta: "c",
+            explicacao:
+              "Disjunção exclusiva (ou-exclusivo, XOR) só é verdadeira quando apenas uma das proposições é verdadeira.",
+          },
+          {
+            enunciado:
+              "Qual a equivalência de 'Se não estudo, então não passo'?",
+            opcoes: [
+              "a) Se passo, então estudei",
+              "b) Se não passo, então não estudei",
+              "c) Se estudo, então passo",
+              "d) Se estudo, então não passo",
+            ],
+            correta: "a",
+            explicacao: "Equivalência lógica: ¬P → ¬Q ≡ Q → P.",
+          },
+          {
+            enunciado:
+              "A proposição 'Ou o réu é culpado, ou é inocente' é exemplo de:",
+            opcoes: [
+              "a) Contradição",
+              "b) Contingência",
+              "c) Tautologia",
+              "d) Fato atípico",
+            ],
+            correta: "c",
+            explicacao: "Ou é culpado ou inocente: é uma tautologia.",
+          },
+          {
+            enunciado: "A sequência 2, 4, 8, 16,... segue qual lógica?",
+            opcoes: [
+              "a) Soma de 2",
+              "b) Potência de 2",
+              "c) Sequência de Fibonacci",
+              "d) Progressão aritmética",
+            ],
+            correta: "b",
+            explicacao: "Cada termo é potência de 2 (2¹, 2², 2³...).",
+          },
+          {
+            enunciado: "A negação de 'Se chover, então vou ao cinema' é:",
+            opcoes: [
+              "a) Chove e não vou ao cinema",
+              "b) Não chove ou vou ao cinema",
+              "c) Não chove e não vou ao cinema",
+              "d) Chove ou não vou ao cinema",
+            ],
+            correta: "a",
+            explicacao: "Negação de (P → Q) = P ∧ ¬Q.",
+          },
+          {
+            enunciado: "O valor lógico de '5 é maior que 7' é:",
+            opcoes: [
+              "a) Verdadeiro",
+              "b) Falso",
+              "c) Indeterminado",
+              "d) Depende",
+            ],
+            correta: "b",
+            explicacao: "5 não é maior que 7, logo é falso.",
+          },
+          {
+            enunciado: "A proposição 'O número 15 é múltiplo de 3 e 5' é:",
+            opcoes: [
+              "a) Verdadeira",
+              "b) Falsa",
+              "c) Indeterminada",
+              "d) Contingente",
+            ],
+            correta: "a",
+            explicacao: "15 é divisível por 3 e 5 simultaneamente.",
+          },
+          {
+            enunciado:
+              "Se todos os presos estudam e João é preso, conclui-se que:",
+            opcoes: [
+              "a) João não estuda",
+              "b) João estuda",
+              "c) João pode estudar ou não",
+              "d) Não se pode concluir nada",
+            ],
+            correta: "b",
+            explicacao:
+              "Silogismo categórico: todos estudam, João pertence ao conjunto, logo ele estuda.",
+          },
+          {
+            enunciado: "A contrária de 'Todos os alunos são dedicados' é:",
+            opcoes: [
+              "a) Alguns alunos não são dedicados",
+              "b) Nenhum aluno é dedicado",
+              "c) Alguns alunos são dedicados",
+              "d) Nenhum aluno é desinteressado",
+            ],
+            correta: "c",
+            explicacao: "Contrária: de 'todos' para 'alguns'.",
+          },
+          {
+            enunciado:
+              "Qual é a negação da proposição 'Alguns policiais não são corruptos'?",
+            opcoes: [
+              "a) Nenhum policial é corrupto",
+              "b) Todos os policiais são corruptos",
+              "c) Alguns policiais são corruptos",
+              "d) Todos os policiais não são corruptos",
+            ],
+            correta: "b",
+            explicacao: "Negação de 'alguns não' = 'todos sim'.",
+          },
+          {
+            enunciado:
+              "Se Pedro estuda ou trabalha, e Pedro não estuda, então:",
+            opcoes: [
+              "a) Pedro não trabalha",
+              "b) Pedro trabalha",
+              "c) Pedro não existe",
+              "d) Nada se pode concluir",
+            ],
+            correta: "b",
+            explicacao:
+              "Disjunção (P ∨ Q); ¬P verdadeiro implica Q verdadeiro.",
+          },
+          {
+            enunciado: "Uma proposição contraditória é aquela que:",
+            opcoes: [
+              "a) É sempre verdadeira",
+              "b) É sempre falsa",
+              "c) Pode ser verdadeira ou falsa",
+              "d) Não tem valor lógico",
+            ],
+            correta: "b",
+            explicacao: "Contradição = proposição sempre falsa.",
+          },
+          {
+            enunciado: "O número binário 1010 equivale a qual número decimal?",
+            opcoes: ["a) 8", "b) 9", "c) 10", "d) 11"],
+            correta: "c",
+            explicacao: "1·2³ + 0·2² + 1·2¹ + 0·2⁰ = 8+0+2+0 = 10.",
+          },
+          {
+            enunciado:
+              "Qual o próximo termo da sequência: 1, 1, 2, 3, 5, 8, ...?",
+            opcoes: ["a) 10", "b) 11", "c) 12", "d) 13"],
+            correta: "d",
+            explicacao:
+              "Sequência de Fibonacci: soma dos dois anteriores (5+8=13).",
+          },
+          {
+            enunciado: "Qual é a tabela-verdade da bicondicional (P ↔ Q)?",
+            opcoes: [
+              "a) Verdadeira apenas se P e Q forem diferentes",
+              "b) Verdadeira apenas se P e Q tiverem o mesmo valor lógico",
+              "c) Sempre verdadeira",
+              "d) Sempre falsa",
+            ],
+            correta: "b",
+            explicacao:
+              "Bicondicional é verdadeira se P e Q têm o mesmo valor lógico.",
+          },
+          {
+            enunciado: "O valor lógico de '2+2=4 e 5>3' é:",
+            opcoes: [
+              "a) Verdadeiro",
+              "b) Falso",
+              "c) Indeterminado",
+              "d) Contradição",
+            ],
+            correta: "a",
+            explicacao: "Ambas são verdadeiras, logo a conjunção é verdadeira.",
+          },
+          {
+            enunciado: "Qual a negação de 'Maria é aluna ou professora'?",
+            opcoes: [
+              "a) Maria não é aluna e não é professora",
+              "b) Maria não é aluna ou não é professora",
+              "c) Maria é apenas professora",
+              "d) Maria é apenas aluna",
+            ],
+            correta: "a",
+            explicacao: "Negação de (P ∨ Q) = (¬P ∧ ¬Q).",
+          },
+          {
+            enunciado:
+              "O que significa dizer que duas proposições são equivalentes?",
+            opcoes: [
+              "a) Uma é a negação da outra",
+              "b) Ambas têm o mesmo valor lógico em todos os casos",
+              "c) Uma é sempre falsa",
+              "d) Uma implica a outra",
+            ],
+            correta: "b",
+            explicacao:
+              "Equivalência lógica = valores lógicos idênticos em todas as situações.",
+          },
+          {
+            enunciado:
+              "Se 'Todos os concursandos estudam lógica' é verdadeiro, qual proposição também é verdadeira?",
+            opcoes: [
+              "a) Nenhum concursando estuda lógica",
+              "b) Alguns concursandos estudam lógica",
+              "c) Alguns concursandos não estudam lógica",
+              "d) Nenhum estuda qualquer disciplina",
+            ],
+            correta: "b",
+            explicacao:
+              "De 'todos estudam' decorre que 'alguns estudam' também é verdadeiro.",
+          },
+        ],
       };
 
       let disciplinaAtual = "";
@@ -4231,6 +5015,17 @@
       let acertos = 0,
         erros = 0;
       let respondida = false;
+
+      function abrirResumo() {
+        document.getElementById("menu").style.display = "none";
+        document.getElementById("quiz").style.display = "none";
+        document.getElementById("resumo").style.display = "block";
+      }
+
+      function voltarMenuResumo() {
+        document.getElementById("resumo").style.display = "none";
+        document.getElementById("menu").style.display = "block";
+      }
 
       function iniciar() {
         let nome = document.getElementById("nome").value;
